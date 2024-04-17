@@ -1,12 +1,21 @@
 import random
+import os
+import sys
 
-startgame = ("off")
+startgame = ("")
 choice = ("off")
-difficulty = ("Medium")
-cheats = ("Off")
-biome = ("Plains")
+mobYN = ["Y","N"]
+encounterchance = [10,90]
+randommob = ["Zombie"]
+mobweights = [1]
+biomes = ['Badlands','Bamboo','Beach','Birch Forest','Cherry Grove','Cold Ocean','Dark Forest','Deep Ocean','Desert','Flower Forest','Forest','Frozen Peaks','Ice Spikes','Jungle','Mangrove Swamp','Meadow','Mooshroom Island','Ocean','Plains','River','Savanna','Snowy Plains','Snowy Taiga','Stony Peaks','Stony Shore','Sunflower Plains','Swamp','Taiga']
+biomeweights = [3,2,5,4,2,2,4,2,6,2,8,2,2,3,2,2,1,5,10,4,4,3,3,4,3,2,3,7]
 
-while startgame == ("off"):
+while startgame == (""):
+    choice = ("off")
+    difficulty = ("Medium")
+    cheats = ("Off")
+    currentbiome = ("Plains")
     print ("")
     print ("Options: Start | Options | Exit")
     startgame = input("What do you want to do?: ")
@@ -34,7 +43,7 @@ while startgame == ("Options"):
     elif choice == ("Spawn Biome"):
         choice = ("off")
         print ("")
-        biome = input("What Biome do you want to spawn in? (see biome list): ")
+        currentbiome = input("What Biome do you want to spawn in? (see biome list): ")
         print ("")
         print ("Options: Start | Options | Exit")
         startgame = input("What do you want to do?: ")
@@ -44,20 +53,47 @@ while startgame == ("Options"):
         print ("Options: Start | Options | Exit")
         startgame = input("What do you want to do?: ")
 
+while startgame == ("Exit"):
+    print ("")
+    print ("bye bye")
+    break
+
 while startgame == ("Start"):
     print ("")
     print ("Welcome to Minecraft (ripoff version)!")
     print ("")
     print ("Options: Craft | Mine | Explore | Inventory | Store | Fight | Forage | Leave Game ")
     choice = input("Choose what you want to do: ")
-    startgame = ("off")
+    startgame = ("on")
 
-while startgame == ("Exit"):
+while choice == ("Explore"):
+    choice = ("off")
+    mobencounter = random.choices(mobYN,encounterchance,k=1)
+
+while mobencounter == ("Y"):
+    mobencounter = ("off")
+    mobfight = random.choices(randommob,mobweights,k=1)
+    print("")
+    print("You encountered a ", (mobfight))
+while mobencounter == ("N"):
+    mobencounter = ("off")
+    currentbiome = random.choices(biomes,biomeweights,k=1)
+    print("")
+    print("You've successfully travelled to a ", (currentbiome), "biome!")
+    startgame = ("Start")
     print ("")
-    print ("bye bye")
-    break
+    print ("Options: Craft | Mine | Explore | Inventory | Store | Fight | Forage | Leave Game ")
+    choice = input("Choose what you want to do: ")
+
+while choice == ("Fight"):
+    choice = ("off")
+    
 
 while choice == ("Leave Game"):
     print ("")
     print ("bye bye")
     break
+
+def loop():
+    os.execv(sys.executable, ['python'] + sys.argv)
+loop()
