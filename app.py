@@ -88,7 +88,23 @@ while mobencounter == ("N"):
 while choice == ("Fight"):
     choice = ("off")
     
+while choice=="Mine":
+    easyMobsOres=[ "coal", "iron", "gold", "Weak Zombie", "Weak Skeleton", "Medium Zombie"]
+    easyMobsOresweight=[35,25,5,30,30,7]
+    print("You have entered the mines")
+    choiceM=input("which mines do you want to go in (better the loot the stronger the mobs)(Easy, Medium, Hard, Extremly Hard, Extreme)")
+    while choiceM=="Easy":
+        print("This mine contains coal, iron, and very rare chances for gold")
+        print("Everytime you move you have chances of wondering upon a ore or a mob")
+        minefoward=input("Move foward? (Y, N)")
+        if minefoward=="Y":
+            random.choice(minefoward,)
 
+
+        
+    elif choiceM=="Medium":
+        print("This mine conta")
+    
 while choice == ("Leave Game"):
     print ("")
     print ("bye bye")
