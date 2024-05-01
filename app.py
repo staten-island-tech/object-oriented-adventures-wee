@@ -83,7 +83,7 @@ while choice=="Mine":
     if choiceM == "Easy":  
         print("This mine contains coal, iron, and very rare chances for gold")
         print("Everytime you move you have chances of wondering upon a ore or a mob")
-        randomMO=random.choice(easyMobsOres,easyMobsOresweight,k=1)
+        randomMO= random.choices(easyMobsOres,easyMobsOresweight, k=1)
         while choiceM=="Easy":
             minefoward=input("Move foward? (Y, N)")
             print("you appeard on", randomMO)
