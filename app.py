@@ -85,13 +85,20 @@ while choice=="Mine":
         print("Everytime you move you have chances of wondering upon a ore or a mob")
         randomMO= random.choices(easyMobsOres,easyMobsOresweight, k=1)
         while choiceM=="Easy":
-            minefoward=input("Move foward? (Y, N)")
-            print("you appeard on", randomMO)
+            print("you appeard on")
+            print(randomMO)
             if randomMO=="Weak Zombie":
                 print("not finished")
             elif randomMO=="coal":
-                print("mine")
-
+                print("")
+            elif randomMO=="iron":
+                print("")
+            elif randomMO=="gold":
+                print("")            
+            elif randomMO=="Weak Skeleton":
+                print("")
+            elif randomMO=="Medium Zombie":
+                print("")
 
 
     
