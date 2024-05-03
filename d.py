@@ -1,7 +1,5 @@
 import random
 
-population = ['Red', 'Blue', 'Green']
-weights = [0.6, 0.3, 0.1]
-
-chosen = random.choices(population, weights, k=5)
-print(chosen)
+my_list = ['apple', 'banana', 'cherry']
+for _ in range(5):  # This will run the loop 5 times
+    print(random.choice(my_list))
