@@ -1,29 +1,24 @@
 import json
 
-with open("inventory.json", "r") as f:
+with open("inventory.json", "r+") as f:
     inventory = json.load(f)
 
 class Inventory:
+    inventory = []
     def __init__(self, inventory):
         self.inventory = inventory
         with open("inventory.json", "r") as f:
             inventory = json.load(f)
-            self.inventory = inventory
-    def view_inventory(self, inventory):
+            self.inventory = self.items(inventory)
+    def view_inventory():
         for Data in inventory:
             print("Item name:", Data["Name"])
             print("Item quantity:", Data["Quantity"])
             print("Sell value:", Data["Sell value"])
-
-def Filter():
-    Y = "Y"
-    while Y == "Y":
-        Inventory.view_inventory
-Filter()
-
-
-
-
-
-
-
+    def items(self, data):
+        items = []
+        for item_data in data:
+            if "Name" in item_data:
+                item = (item_data["Name"], item_data["Price"], item_data["Damage"], item_data["Crit percent"])
+            items.append(item)
+        return items

@@ -68,8 +68,20 @@ class Store:
                 else:
                     return None
         print("Item not found in the store.")
+    def sell_item(self, item_name):
+        for item in self.items:
+            if item.name.lower() == item_name.lower():
+                item.display_info()
+                sure = input("Are you sure you want to sell this? (Y/N): ")
+                if sure.upper() == "Y":
+                    print("You have sold ", item.name)
+                    return item
+                else:
+                    return None
+        print("Item not found in inventory.")
         return None
-
+with open("inventory.json", "r") as f:
+    inventory = json.load(f)
 def main():
     store = Store()
     while True:
@@ -89,20 +101,19 @@ def main():
             else:
                 print("Invalid item type.")
         elif store_option == "Sell":
-            for Data in :
-                Inventory().view_inventory
-                ITEM = input("What do you want to sell? Choose 1 : ")
-                if ITEM == (Data["Name"]):
+            while True:
+                for Data in inventory:
                     print("Item name:", Data["Name"])
                     print("Item quantity:", Data["Quantity"])
                     print("Sell value:", Data["Sell value"])
+                ITEM = input("What do you want to sell? Choose 1 : ")
+                while ITEM not in (Data["Name"]):
+                    print("You don't have that item, type again: ")
 
                 Quantity = int(input("How much of that item do you want to sell?: "))
                 if Quantity > (Data["Quantity"]):
                     print("You don't have that much items, type another number : ")
-                    return 
-
-            pass
+                pass
         elif store_option == "Exit":
             print("Goodbye!")
             break
