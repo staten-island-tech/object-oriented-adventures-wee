@@ -15,7 +15,6 @@ class Sword(Item):
         super().__init__(name, price)
         self.damage = damage
         self.crit_percent = crit_percent
-
     def display_info(self):
         super().display_info()
         print("Damage:", self.damage)
@@ -25,7 +24,6 @@ class Pickaxe(Item):
     def __init__(self, name, price, mining_power):
         super().__init__(name, price)
         self.mining_power = mining_power
-
     def display_info(self):
         super().display_info()
         print("Mining Power:", self.mining_power)
@@ -34,7 +32,6 @@ class Armor(Item):
     def __init__(self, name, price, health_boost):
         super().__init__(name, price)
         self.health_boost = health_boost
-
     def display_info(self):
         super().display_info()
         print("Health Boost:", self.health_boost)
@@ -80,8 +77,10 @@ class Store:
                     return None
         print("Item not found in inventory.")
         return None
+
 with open("inventory.json", "r") as f:
     inventory = json.load(f)
+
 def main():
     store = Store()
     while True:
@@ -107,13 +106,16 @@ def main():
                     print("Item quantity:", Data["Quantity"])
                     print("Sell value:", Data["Sell value"])
                 ITEM = input("What do you want to sell? Choose 1 : ")
-                while ITEM not in (Data["Name"]):
-                    print("You don't have that item, type again: ")
+                if ITEM == (Data["Name"]):
+                    Quantity = int(input("How much of that item do you want to sell?: "))
+                    if Quantity <= (Data["Quantity"]):
+                        New_Quantity = (Data["Quantity"]) - Quantity
+                        Profit = Quantity * (Data["Sell value"])
 
-                Quantity = int(input("How much of that item do you want to sell?: "))
-                if Quantity > (Data["Quantity"]):
-                    print("You don't have that much items, type another number : ")
-                pass
+                    elif Quantity > (Data["Quantity"]):
+                        print("You don't have that much items, type another number: ")
+                else:
+                    print("You don't have that item, type again: ")
         elif store_option == "Exit":
             print("Goodbye!")
             break

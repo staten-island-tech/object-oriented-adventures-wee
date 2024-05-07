@@ -15,10 +15,3 @@ class Inventory:
             print("Item name:", Data["Name"])
             print("Item quantity:", Data["Quantity"])
             print("Sell value:", Data["Sell value"])
-    def items(self, data):
-        items = []
-        for item_data in data:
-            if "Name" in item_data:
-                item = (item_data["Name"], item_data["Price"], item_data["Damage"], item_data["Crit percent"])
-            items.append(item)
-        return items

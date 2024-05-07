@@ -3,12 +3,12 @@ import os
 with open("player.json", encoding="utf8") as file:
     player = json.load(file)
 class Player():
-    def __init__(self, name, health, weapons, tools, ):
+    def __init__(self, name, health, weapon, tool, balance):
         self.name = name
         self.health = health
-        self.weapons = weapons
-        self.tools = tools
-
+        self.weapon = weapon
+        self.tool = tool
+        self.balance = balance
 
 while True:
     N = input("What's the player's name?: ")

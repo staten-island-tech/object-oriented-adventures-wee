@@ -1,1 +1,1 @@
-[{"name": "bob", "health": 100, "weapons": "Fists", "tools": "Fists"}, {"name": "Walter", "health": 100, "weapons": "Fists", "tools": "Fists"}, {"name": "John", "health": 100, "weapons": "Fists", "tools": "Fists"}]
+[{"name": "bob", "health": 100, "weapon": "Fists", "tool": "Fists"}, {"name": "Walter", "health": 100, "weapon": "Fists", "tool": "Fists"}, {"name": "John", "health": 100, "weapon": "Fists", "tool": "Fists"}]
