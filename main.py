@@ -1,16 +1,17 @@
 import random
 from biome import biomes,biomeweights,badlandsloot,badlandschances,bamboojungleloot,bamboojunglechances,beachchances,beachloot,birchforestchances,birchforestloot,cherrygrovechances,cherrygroveloot,coldoceanchances,coldoceanloot,darkforestchances,darkforestloot,deepoceanchances,deepoceanloot,desertchances,desertloot,flowerforestchances,flowerforestloot,forestchances,forestloot,frozenpeakschances,frozenpeaksloot,icespikeschances,icespikesloot,junglechances,jungleloot,mangrovechances,mangroveloot,meadowchances,meadowloot,mooshroomchances,mooshroomloot,oceanchances,oceanloot,plainschances,plainsloot,riverchances,riverloot,savannachances,savannaloot,snowyplainschances,snowyplainsloot,snowytaigachances,snowytaigaloot,sunflowerplainschances,sunflowerplainsloot,swampchances,swamploot,taigachances,taigaloot
 
+# Define variables and lists
+start_game = ""
+choice = "off"
+mobYN = ["Y", "N"]
+encounter_chance = [10, 90]
 
-startgame = ("")
-choice = ("off")
-mobYN = ["Y","N"]
-encounterchance = [10,90]
-randommob = ["Zombie"]
-mobweights = [1]
-currentbiome = ['Plains']
-
+# Game loop
 while True:
+    if start_game == "exit":
+        print("Bye bye!")
+        break
     print("\nOptions: Start | Options | Exit")
     start_game = input("What do you want to do?: ").lower()
     
@@ -24,10 +25,9 @@ while True:
                 currentbiome = random.choices(biomes,biomeweights,k=1)
                 print("")
                 print("You've successfully travelled to a ", (currentbiome), "biome!")
-                startgame = ("Start")
                 print ("")
 
-            if choice == ("forage"):
+            elif choice == ("forage"):
                 if currentbiome == (['Badlands']):
                     itemobtained = random.choices(badlandsloot,badlandschances,k=1)
                 if currentbiome == (['Bamboo']):
@@ -84,123 +84,75 @@ while True:
                 print ("You have obtained a", (itemobtained),"!")
                 print ("")
 
-            if choice == ("Leave Game"):
+            elif choice == "mine":
+                # Mining logic
+                easy_mobs_ores = ["coal", "iron", "gold", "Weak Zombie", "Weak Skeleton", "Medium Zombie"]
+                medium_mobs_ores = ["iron", "gold", "lapis", "Medium Zombie", "Medium Skeleton", "Hard Zombie"]
+                hard_mobs_ores = ["gold", "lapis", "diamond", "Hard Zombie", "Hard Skeleton", "Extreme Zombie"]
+                extreme_mobs_ores = ["lapis", "diamond", "dragon ingot", "Extreme Zombie", "Extreme Skeleton", "Hard Zombie"]
+
+                easy_mobs_ores_weight = [35, 25, 5, 30, 30, 7]
+                print("")
+                print("You have entered the mines.")
+                choice_mine = input("Which mines do you want to go in? (better the loot the stronger the mobs) (Easy, Medium, Hard, Extremely Hard, Extreme): ").capitalize()
+                if choice_mine not in ["Easy", "Medium", "Hard", "Extremely Hard", "Extreme"]:
+                    print("Invalid choice.")
+                    continue
+
                 print ("")
-                print ("bye bye")
+                print(f"This mine contains {' and '.join(easy_mobs_ores)}")
+                print("Every time you move, you have chances of encountering an ore or a mob")
+
+                for i in range(100):
+                    print ("")
+                    print("You appeared on")
+                    random_MO = random.choices(easy_mobs_ores, easy_mobs_ores_weight, k=1)[0]
+                    print(random_MO)
+                    if random_MO in ["Weak Zombie", "Weak Skeleton", "Medium Zombie"]:
+                        print("Not finished")
+                    else:
+                        print("")
+                    continue_mine = input("Do you want to continue (Y/N): ").upper()
+                    if continue_mine != "Y":
+                        break
+
+            elif choice == "leave game":
+                start_game = ("exit")
                 break
-    elif start_game=="options":
-        print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
-        option = input("Choose what you want to change: ").lower()
-        if option == "difficulty":
-                print("Difficulty Options: Peaceful | Easy | Medium | Hard")
+
+            else:
+                print("Invalid choice. Please try again.")
+    elif start_game == "options":
+        while True:
+            print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
+            option = input("Choose what you want to change: ").lower()
+            if option == "difficulty":
+                print("\nDifficulty Options: Peaceful | Easy | Medium | Hard")
                 difficulty = input("Choose the difficulty level: ").lower()
                 if difficulty not in ["peaceful", "easy", "medium", "hard"]:
                     print("Invalid difficulty level.")
                 else:
                     print("Difficulty set to:", difficulty)
-        elif option == "cheats":
+            elif option == "cheats":
                 cheats = input("\nDo you want cheats on or off? (On | Off): ").lower()
                 if cheats not in ["on", "off"]:
                     print("Invalid choice for cheats.")
                 else:
                     print("Cheats set to:", cheats)
-        elif option == "spawn biome":
+            elif option == "spawn biome":
                 print("\nAvailable Biomes:", ", ".join(biomes))
                 current_biome = input("Enter the biome you want to spawn in: ").capitalize()
                 if current_biome not in biomes:
                     print("Invalid biome.")
                 else:
                     print("Spawn biome set to:", current_biome)                
-        elif choice == "Mine":
-                easyMobsOres=[ "coal", "iron", "gold", "Weak Zombie", "Weak Skeleton", "Medium Zombie"]
-                MediumMobsOres=[ "iron", "gold", "lapis", "Medium Zombie", "Medium Skeleton", "Hard Zombie"]
-                HardMobsOres=[ "gold", "lapis", "daimond", "Hard Zombie", "Hard Skeleton", "Extreme Zombie"]
-                ExtremeMobsOres=[ "lapis", "daimond", "dragon ingot", "Extreme Zombie", "Extreme Skeleton", "Hard Zombie"]
-    
-                easyMobsOresweight=[35,25,5,30,30,7]
-                print("You have entered the mines")
-                choiceM=input("which mines do you want to go in (better the loot the stronger the mobs)(Easy, Medium, Hard, Extremly Hard, Extreme)").lower()
-                leaveMine=input("DO you wanna leave?(Y,N)")
-                if leaveMine!="Y":
-                        break
-        
-                if choiceM == "easy":  
-                        print("This mine contains coal, iron, and very rare chances for gold")
-                        print("Everytime you move you have chances of wondering upon a ore or a mob")
-            
-                for i in range(100):
-                        print("you appeard on")
-                        randomMO = random.choices(easyMobsOres,easyMobsOresweight, k=1)
-                        print(randomMO)
-                        if randomMO=="Weak Zombie":
-                                print("not finished")
-                        elif randomMO=="coal":
-                                print("")
-                        elif randomMO=="iron":
-                                print("")
-                        elif randomMO=="gold":
-                                print("")            
-                        elif randomMO=="Weak Skeleton":
-                                print("")
-                        elif randomMO=="Medium Zombie":
-                                print("")
-                continueM=input("Do you wanna continue(Y,N)")
-                if continueM.upper()!="Y":
-                        break
-                elif choiceM == "Medium":  
-                        print("This mine contains iron, gold, and very rare chances for lapis")
-                        print("Everytime you move you have chances of wondering upon a ore or a mob")
-                for i in range(100):
-                        print("you appeard on")
-                        randomMO = random.choices(MediumMobsOres,easyMobsOresweight, k=1)
-                        print(randomMO)
-                        if randomMO=="Medium Zombie":
-                                print("not finished")
-                        elif randomMO=="iron":
-                                print("")
-                        elif randomMO=="gold":
-                                print("")
-                        elif randomMO=="lapis":
-                                print("")            
-                        elif randomMO=="Medium Skeleton":
-                                print("")
-                        elif randomMO=="Hard Zombie":
-                                print("")
-                continueM=input("Do you wanna continue(Y,N)")
-                if continueM.upper()!="Y":
-                        break
-                elif choiceM == "Hard":  
-                        print("This mine contains gold, lapis, and very rare chances for daimond")
-                        print("Everytime you move you have chances of wondering upon a ore or a mob")
-                for i in range(100):
-                        print("you appeard on")
-                        randomMO = random.choices(HardMobsOres,easyMobsOresweight, k=1)
-                        print(randomMO)
-                        if randomMO=="Hard Zombie":
-                                print("not finished")
-                        elif randomMO=="gold":
-                                print("")
-                        elif randomMO=="lapis":
-                                print("")
-                        elif randomMO=="diamond":
-                                print("")            
-                        elif randomMO=="Hard Skeleton":
-                                print("")
-                        elif randomMO=="Extreme Zombie":
-                                print("")
-                        continueM=input("DO you wanna continue(Y,N)")
-                        if continueM.upper()!="Y":
-                                break
-    while start_game == ("exit"):
-                print ("")
-                print ("bye bye")
+            elif option == "return":
+                break  # Exit the inner loop
+            else:
+                print("Invalid option. Please try again.")
+    elif start_game == "exit":
+        print("Bye bye!")
+        break
 
-
-
-
-
-
-
-
-
-        
+    else:
+        print("Invalid choice. Please try again.")
