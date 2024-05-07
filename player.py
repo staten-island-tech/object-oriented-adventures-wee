@@ -1,8 +1,15 @@
 class Player:
-    def __init__(player, health, weapon):
+    def __init__(player, health, damage):
         player.health=health
-        player.weapon=fists
+        player.damage=damage
+    health=50
+    damage=10
 
-health=50
-fists=10
-print(f"{Player}")
+weapon=input("did you want to buy a wepon")
+
+if weapon.capitalize() == "Yes":
+    damage=100
+
+
+print(Player)
+
