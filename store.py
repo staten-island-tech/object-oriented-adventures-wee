@@ -100,20 +100,22 @@ def main():
             else:
                 print("Invalid item type.")
         elif store_option == "Sell":
+            for Data in inventory:
+                print("Item name:", Data["Name"])
+                print("Item quantity:", Data["Quantity"])
+                print("Sell value:", Data["Sell value"])
             while True:
-                for Data in inventory:
-                    print("Item name:", Data["Name"])
-                    print("Item quantity:", Data["Quantity"])
-                    print("Sell value:", Data["Sell value"])
                 ITEM = input("What do you want to sell? Choose 1 : ")
                 if ITEM == (Data["Name"]):
-                    Quantity = int(input("How much of that item do you want to sell?: "))
-                    if Quantity <= (Data["Quantity"]):
-                        New_Quantity = (Data["Quantity"]) - Quantity
-                        Profit = Quantity * (Data["Sell value"])
-
-                    elif Quantity > (Data["Quantity"]):
-                        print("You don't have that much items, type another number: ")
+                    item = store.sell_item(ITEM)
+                    while True:
+                        Quantity = int(input("How much of that item do you want to sell?: "))
+                        if Quantity <= (Data["Quantity"]):
+                            New_Quantity = (Data["Quantity"]) - Quantity
+                            Profit = Quantity * (Data["Sell value"])
+                            
+                        else:
+                            print("You don't have that much items, type another number: ")
                 else:
                     print("You don't have that item, type again: ")
         elif store_option == "Exit":

@@ -15,7 +15,8 @@ while True:
     H = int(input("How much health does the player have?(up to 1000-only accessible with cheats on- otherwise, type 100): "))
     W = input("What starting weapon do you want?(up to iron-only if cheats are on- otherwise, type Fists): ")
     T = input("What starting tool do you want?(up to iron-only if cheats are on- otherwise, type Fists): ")
-    players = Player(N,H,W,T)
+    B = 0
+    players = Player(N,H,W,T,B)
     player.append(players.__dict__)
     break
 
@@ -27,3 +28,18 @@ with open(new_file, "w") as f:
 
 os.remove("player.json")
 os.rename(new_file, "player.json")
+
+
+with open("inventory.json", "r+") as f:
+    inventory = json.load(f)
+
+class Inventory:
+    inventory = []
+    def __init__(self, inventory, playerinfo):
+        self.inventory = inventory
+        self.player_data = playerinfo
+    def view_inventory():
+        for Data in inventory:
+            print("Item name:", Data["Name"])
+            print("Item quantity:", Data["Quantity"])
+            print("Sell value:", Data["Sell value"])
