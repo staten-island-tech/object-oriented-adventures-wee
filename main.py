@@ -8,12 +8,7 @@ start_game = ""
 choice = "off"
 mobYN = ["Y", "N"]
 encounter_chance = [10, 90]
-
-class Biome():
-    def __init__(self,biomename,loot,chances):
-        self.name = biomename
-        self.loot = loot
-        self.chances = chances
+currentbiome = ["Plains"]
 
 # Game loop
 while True:
@@ -100,11 +95,12 @@ while True:
                     print("Cheats set to:", cheats)
             elif option == "spawn biome":
                 print("\nAvailable Biomes:", ", ".join(biomes))
-                current_biome = input("Enter the biome you want to spawn in: ").capitalize()
-                if current_biome not in biomes:
+                currentbiome = input("Enter the biome you want to spawn in (CASE SENSITIVE): ")()
+                print(currentbiome)
+                if currentbiome not in biomes:
                     print("Invalid biome.")
                 else:
-                    print("Spawn biome set to:", current_biome)                
+                    print("Spawn biome set to:", currentbiome)                
             elif option == "return":
                 break  # Exit the inner loop
             else:
