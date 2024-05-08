@@ -8,6 +8,15 @@ encounter_chance = [10, 90]
 biomes = ['Badlands', 'Bamboo', 'Beach', 'Birch Forest', 'Cherry Grove', 'Cold Ocean', 'Dark Forest', 'Deep Ocean', 'Desert', 'Flower Forest', 'Forest', 'Frozen Peaks', 'Ice Spikes', 'Jungle', 'Mangrove Swamp', 'Meadow', 'Mooshroom Island', 'Ocean', 'Plains', 'River', 'Savanna', 'Snowy Plains', 'Snowy Taiga', 'Stony Peaks', 'Stony Shore', 'Sunflower Plains', 'Swamp', 'Taiga']
 biome_weights = [3, 2, 5, 4, 2, 2, 4, 2, 6, 2, 8, 2, 2, 3, 2, 2, 1, 5, 10, 4, 4, 3, 3, 4, 3, 2, 3, 7]
 
+class Mobs:
+    def __init__(self, mobhealth, mobdamage):
+        self.mobhealth=mobhealth
+        self.mobdamage=mobdamage
+class Player:
+    def __init__(self, health, damage):
+        self.health=health
+        self.damage=damage
+player=Player(50, 15)
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
@@ -62,6 +71,15 @@ while True:
                 medium_mobs_ores = ["iron", "gold", "lapis", "Medium Zombie", "Medium Skeleton", "Hard Zombie"]
                 hard_mobs_ores = ["gold", "lapis", "diamond", "Hard Zombie", "Hard Skeleton", "Extreme Zombie"]
                 extreme_mobs_ores = ["lapis", "diamond", "dragon ingot", "Extreme Zombie", "Extreme Skeleton", "Hard Zombie"]
+                WeakSkeleton=Mobs(25,10)
+                WeakZombie=Mobs(25,10)
+                MediumSkeleton=Mobs(40,20)
+                MediumZombie=Mobs(40,20)
+                HardSkeleton=Mobs(80,40)
+                HardZombied=Mobs(80,40)
+                ExtremeSkeleton=Mobs(150,80)
+                ExtremeSkeleton=Mobs(150,80)
+
 
                 mobs_ores_weight = [35, 25, 5, 30, 30, 7]
                 print("You have entered the mines")
@@ -77,9 +95,23 @@ while True:
                         print("You appeared on")
                         random_MO = random.choices(easy_mobs_ores, mobs_ores_weight, k=1)[0]
                         print(random_MO)
-                        if random_MO in ["Weak Zombie", "Weak Skeleton", "Medium Zombie"]:
+                        if random_MO in ["Weak Zombie", "Weak Skeleton"]:
                             print("Not finished")
-                        else:
+                            print(f"Health of the mob is {WeakSkeleton.mobhealth}")
+                            print(f"He attacks you for {WeakSkeleton.mobdamage}")
+                            playerhealthcurrent= Player.health-WeakSkeleton.mobdamage
+                            print(f"You have {playerhealthcurrent} health")
+                            attack_run=input("What would you like to do (Attack or Run)")
+                        if attack_run.capitalize() == "Attack":
+                            print(f"You have done {player.damage-WeakSkeleton.mobhealth}")
+                            print(f"He hits you again and your health is {playerhealthcurrent-WeakSkeleton.mobdamage}")
+                            print(f"You have done {player.damage-WeakSkeleton.mobhealth}")
+                            if WeakSkeleton.mobdamage <= 0:
+                                print("congratioulations you have obtained one bone")
+
+                        elif random_MO in ["Medium Skeleton"]:
+                            print("not finished")
+                        elif random_MO in ["coal", "iron", "gold"]:
                             print("")
                         continue_mine = input("Do you want to continue (Y/N): ").upper()
                         if continue_mine != "Y":
