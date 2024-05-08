@@ -1,11 +1,19 @@
-import random
-from biome import biomes,biomeweights,badlandsloot,badlandschances,bamboojungleloot,bamboojunglechances,beachchances,beachloot,birchforestchances,birchforestloot,cherrygrovechances,cherrygroveloot,coldoceanchances,coldoceanloot,darkforestchances,darkforestloot,deepoceanchances,deepoceanloot,desertchances,desertloot,flowerforestchances,flowerforestloot,forestchances,forestloot,frozenpeakschances,frozenpeaksloot,icespikeschances,icespikesloot,junglechances,jungleloot,mangrovechances,mangroveloot,meadowchances,meadowloot,mooshroomchances,mooshroomloot,oceanchances,oceanloot,plainschances,plainsloot,riverchances,riverloot,savannachances,savannaloot,snowyplainschances,snowyplainsloot,snowytaigachances,snowytaigaloot,sunflowerplainschances,sunflowerplainsloot,swampchances,swamploot,taigachances,taigaloot
+import random,json
+biomedata = open("./biome.json", encoding="utf8")
+biomedata1 = json.load(biomedata)
+from biome import biomes,biomeweights
 
 # Define variables and lists
 start_game = ""
 choice = "off"
 mobYN = ["Y", "N"]
 encounter_chance = [10, 90]
+
+class Biome():
+    def __init__(self,biomename,loot,chances):
+        self.name = biomename
+        self.loot = loot
+        self.chances = chances
 
 # Game loop
 while True:
@@ -28,58 +36,9 @@ while True:
                 print ("")
 
             elif choice == ("forage"):
-                if currentbiome == (['Badlands']):
-                    itemobtained = random.choices(badlandsloot,badlandschances,k=1)
-                if currentbiome == (['Bamboo']):
-                    itemobtained = random.choices(bamboojungleloot,bamboojunglechances,k=1)
-                if currentbiome == (['Beach']):
-                    itemobtained = random.choices(beachloot,beachchances,k=1)
-                if currentbiome == (['Birch Forest']):
-                    itemobtained = random.choices(birchforestloot,birchforestchances,k=1)
-                if currentbiome == (['Cherry Grove']):
-                    itemobtained = random.choices(cherrygroveloot,cherrygrovechances,k=1)
-                if currentbiome == (['Cold Ocean']):
-                    itemobtained = random.choices(coldoceanloot,coldoceanchances,k=1)
-                if currentbiome == (['Dark Forest']):
-                   itemobtained = random.choices(darkforestloot,darkforestchances,k=1)
-                if currentbiome == (['Deep Ocean']):
-                    itemobtained = random.choices(deepoceanloot,deepoceanchances,k=1)
-                if currentbiome == (['Desert']):
-                    itemobtained = random.choices(desertloot,desertchances,k=1)
-                if currentbiome == (['Flower Forest']):
-                    itemobtained = random.choices(flowerforestloot,flowerforestchances,k=1)
-                if currentbiome == (['Forest']):
-                    itemobtained = random.choices(forestloot,forestchances,k=1)
-                if currentbiome == (['Frozen Peaks']):
-                    itemobtained = random.choices(frozenpeaksloot,frozenpeakschances,k=1)
-                if currentbiome == (['Ice Spikes']):
-                    itemobtained = random.choices(icespikesloot,icespikeschances,k=1)
-                if currentbiome == (['Jungle']):
-                    itemobtained = random.choices(jungleloot,junglechances,k=1)
-                if currentbiome == (['Mangrove Swamp']):
-                    itemobtained = random.choices(mangroveloot,mangrovechances,k=1)
-                if currentbiome == (['Meadow']):
-                    itemobtained = random.choices(meadowloot,meadowchances,k=1)
-                if currentbiome == (['Mooshroom Island']):
-                    itemobtained = random.choices(mooshroomloot,mooshroomchances,k=1)
-                if currentbiome == (['Ocean']):
-                    itemobtained = random.choices(oceanloot,oceanchances,k=1)
-                if currentbiome == (['Plains']):
-                    itemobtained = random.choices(plainsloot,plainschances,k=1)
-                if currentbiome == (['River']):
-                    itemobtained = random.choices(riverloot,riverchances,k=1)
-                if currentbiome == (['Savanna']):
-                    itemobtained = random.choices(savannaloot,savannachances,k=1)
-                if currentbiome == (['Snowy Plains']):
-                    itemobtained = random.choices(snowyplainsloot,snowyplainschances,k=1)
-                if currentbiome == (['Snowy Taiga']):
-                    itemobtained = random.choices(snowytaigaloot,snowytaigachances,k=1)
-                if currentbiome == (['Sunflower Plains']):
-                    itemobtained = random.choices(sunflowerplainsloot,sunflowerplainschances,k=1)
-                if currentbiome == (['Swamp']):
-                    itemobtained = random.choices(swamploot,swampchances,k=1)
-                if currentbiome == (['Taiga']):
-                    itemobtained = random.choices(taigaloot,taigachances,k=1)
+                for i in biomedata1:
+                    if currentbiome == (i["name"]):
+                        itemobtained = random.choices(i["loot"],i["chances"],k=1)
                 print ("")
                 print ("You have obtained a", (itemobtained),"!")
                 print ("")
@@ -94,7 +53,7 @@ while True:
                 easy_mobs_ores_weight = [35, 25, 5, 30, 30, 7]
                 print("")
                 print("You have entered the mines.")
-                choice_mine = input("Which mines do you want to go in? (better the loot the stronger the mobs) (Easy, Medium, Hard, Extremely Hard, Extreme): ").capitalize()
+                choice_mine = input("Which mines do you want to go in? (the better the loot the stronger the mobs) (Easy, Medium, Hard, Extremely Hard, Extreme): ").capitalize()
                 if choice_mine not in ["Easy", "Medium", "Hard", "Extremely Hard", "Extreme"]:
                     print("Invalid choice.")
                     continue
