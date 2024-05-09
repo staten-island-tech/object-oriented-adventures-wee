@@ -1,6 +1,6 @@
-import json
-import os
+import json, os, time, sys
 from inventory import Inventory
+
 class Item:
     def __init__(self, name, price):
         self.name = name
@@ -35,6 +35,12 @@ class Armor(Item):
     def display_info(self):
         super().display_info()
         print("Health Boost:", self.health_boost)
+
+def print_slow(str):
+    for letter in str:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(0.01)
 
 class Store:
     def __init__(self):
@@ -100,24 +106,39 @@ def main():
             else:
                 print("Invalid item type.")
         elif store_option == "Sell":
-            for Data in inventory:
-                print("Item name:", Data["Name"])
-                print("Item quantity:", Data["Quantity"])
-                print("Sell value:", Data["Sell value"])
-            while True:
-                ITEM = input("What do you want to sell? Choose 1 : ")
-                if ITEM == (Data["Name"]):
-                    item = store.sell_item(ITEM)
-                    while True:
-                        Quantity = int(input("How much of that item do you want to sell?: "))
-                        if Quantity <= (Data["Quantity"]):
-                            New_Quantity = (Data["Quantity"]) - Quantity
-                            Profit = Quantity * (Data["Sell value"])
-                            
-                        else:
-                            print("You don't have that much items, type another number: ")
-                else:
-                    print("You don't have that item, type again: ")
+            S = "S"
+            while S == "S":
+                I = "I"
+                for Data in inventory:
+                    print("Item name:", Data["Name"]) 
+                    print("Item quantity:", Data["Quantity"])
+                    print("Sell value:", Data["Sell value"])
+                while I == "I":
+                    ITEM = input("What do you want to sell? Choose 1 : ")
+                    if ITEM == (Data["Name"]):
+                        print("You currently have", Data["Quantity"], Data["Name"])
+                        I = "A"
+                        Q = "Q"
+                    else:
+                        print_slow("You don't have that item, type again: ")
+                while Q == "Q":
+                    Quantity = int(input("How much of that item do you want to sell?: "))
+                    if Quantity <= (Data["Quantity"]):
+                        New_Quantity = (Data["Quantity"]) - Quantity
+                        Profit = Quantity * (Data["Sell value"])
+                        print("You are going sell", Data["Quantity"], Data["Name"])
+                        s = "S"
+                    else:
+                        print("You don't have that much items")
+                while s == "S":
+                    sure = input("Are you sure you want to sell", Data["Quantity"], Data["Name"])
+                    if sure.upper() == "Y":
+                        print("You have sold ", Quantity ,Data["Name"], "and earned", Profit, "ducats")
+                        print("You now have", New_Quantity, Data["Name"])
+                    else:
+                        S = "S"
+                
+
         elif store_option == "Exit":
             print("Goodbye!")
             break
