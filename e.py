@@ -95,24 +95,32 @@ while True:
                         print("You appeared on")
                         random_MO = random.choices(easy_mobs_ores, mobs_ores_weight, k=1)[0]
                         print(random_MO)
-                        if random_MO in ["Weak Zombie", "Weak Skeleton"]:
+                        if random_MO in ["coal", "iron", "gold"]:
+                            print("")
+                        elif random_MO in ["Weak Zombie", "Weak Skeleton"]:
                             print("Not finished")
                             print(f"Health of the mob is {WeakSkeleton.mobhealth}")
                             print(f"He attacks you for {WeakSkeleton.mobdamage}")
-                            playerhealthcurrent= Player.health-WeakSkeleton.mobdamage
+                            playerhealthcurrent= player.health-WeakSkeleton.mobdamage
                             print(f"You have {playerhealthcurrent} health")
                             attack_run=input("What would you like to do (Attack or Run)")
-                        if attack_run.capitalize() == "Attack":
-                            print(f"You have done {player.damage-WeakSkeleton.mobhealth}")
-                            print(f"He hits you again and your health is {playerhealthcurrent-WeakSkeleton.mobdamage}")
-                            print(f"You have done {player.damage-WeakSkeleton.mobhealth}")
-                            if WeakSkeleton.mobdamage <= 0:
-                                print("congratioulations you have obtained one bone")
+                            while attack_run.capitalize() == "Attack":
+                                    print(f"You have done {player.damage-WeakSkeleton.mobhealth} dmg")
+                                    
+                                    if WeakSkeleton.mobhealth <= 0:
+                                        print("congratioulations you have obtained one bone")
+                                    print(f"He hits you again and your health is {playerhealthcurrent-WeakSkeleton.mobdamage}")
+                                    if playerhealthcurrent <= 0:
+                                        break
+                                    print(f"You have done another {player.damage-WeakSkeleton.mobhealth} dmg")
+
+                                    if WeakSkeleton.mobhealth <= 0:
+                                        print("congratioulations you have obtained one bone")
+                                        break
 
                         elif random_MO in ["Medium Skeleton"]:
                             print("not finished")
-                        elif random_MO in ["coal", "iron", "gold"]:
-                            print("")
+
                         continue_mine = input("Do you want to continue (Y/N): ").upper()
                         if continue_mine != "Y":
                             break
