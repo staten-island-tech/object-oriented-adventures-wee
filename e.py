@@ -112,33 +112,34 @@ while True:
                                 mob = random_MO
                                 print(f"A {mob.name} appeared!")
                                 while random_MO in levels[level]['mobs']:
-                                
                                     
-                                    attack_run = input("What would you like to do? (Attack/Run): ").lower()
-                                    if attack_run == "attack":
-                                            mob.mobhealth -= player.damage
+                                
+                                        player.health -= mob.mobdamage
+                                        print(f"The {mob.name} attacked you. Your health is now {player.health}")
+                                        if player.health <= 0:
+                                            print("You were defeated by the mob!")
+                                            return
+                                        attack_run = input("What would you like to do? (Attack/Run): ").lower()
+                                        if attack_run == "Attack":
                                             print(f"You attacked the {mob.name}. Its health is now {mob.mobhealth}")
                                             if mob.mobhealth <= 0:
                                                 print(f"Congratulations, you defeated the {mob.name}!")
                                                 mob.mobhealth=25
                                                 break
-                                            player.health -= mob.mobdamage
-                                            print(f"The {mob.name} attacked you. Your health is now {player.health}")
-                                            if player.health <= 0:
-                                                print("You were defeated by the mob!")
-                                                return
-                                    elif attack_run == "run":
-                                            print(f"You successfully ran away from the {mob.name}.")
-                                            break
+                                        
 
-                                    else:
-                                        print("Invalid input. Please enter 'Attack' or 'Run'.")
-                                    
+                                        elif attack_run == "run":
+                                                    print(f"You successfully ran away from the {mob.name}.")
+                                                    break
+
+                                        else:
+                                            print("Invalid input. Please enter 'Attack' or 'Run'.")
+                                        
+                                else:
+                                    ore = random_MO
+                                    print(f"You found {ore} ore.")
                             else:
-                                ore = random_MO
-                                print(f"You found {ore} ore.")
-                        else:
-                            print("Invalid choice. Please choose 'Mine' or 'Leave'.")
+                                print("Invalid choice. Please choose 'Mine' or 'Leave'.")
                 level = choose_level()
                 mine(level)
             
