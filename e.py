@@ -119,16 +119,18 @@ while True:
                                         if player.health <= 0:
                                             print("You were defeated by the mob!")
                                             return
-                                        attack_run = input("What would you like to do? (Attack/Run): ").lower()
-                                        if attack_run == "Attack":
+                                        attack_run = input("What would you like to do? (Attack/Run): ")
+                                        if attack_run.lower() == "attack":
+                                            mob.mobhealth -= player.damage
                                             print(f"You attacked the {mob.name}. Its health is now {mob.mobhealth}")
+                                        
                                             if mob.mobhealth <= 0:
                                                 print(f"Congratulations, you defeated the {mob.name}!")
                                                 mob.mobhealth=25
                                                 break
                                         
 
-                                        elif attack_run == "run":
+                                        elif attack_run.lower() == "run":
                                                     print(f"You successfully ran away from the {mob.name}.")
                                                     break
 
