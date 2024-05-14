@@ -1,16 +1,18 @@
 import random,json
+mobencounterdata = open("./mobencounters.json", encoding="utf8")
+mobencounterdata1 = json.load(mobencounterdata)
 biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
-from mobs import easymobencounter, mediummobencounter, hardmobencounter, extrememobencounter
 
 # Define variables and lists
 start_game = ""
 choice = "off"
 mobYN = ["Y", "N"]
-encounter_chance = [10, 90]
+encounter_chance = [20, 80]
 currentbiome = ["Plains"]
 difficulty = ["normal"]
+difficulty1 = ["normal"]
 cheats = ["off"]
 
 # Game loop
@@ -34,19 +36,20 @@ while True:
             elif choice == ("forage"):
                 mobencounter = random.choices(mobYN,encounter_chance,k=1)
                 if mobencounter == ["Y"]:
-                    if difficulty == ["peaceful"]:
+                    if difficulty == ("peaceful"):
                         for i in biomedata1:
                             if currentbiome == (i["name"]):
                                 itemobtained = random.choices(i["loot"],i["chances"],k=1)
                         print ("")
                         print ("You have obtained a", (itemobtained),"!")
                         print ("")
-                    elif difficulty == ["easy"]:
-                        easymobencounter()
-                    elif difficulty == ["medium"]:
-                        mediummobencounter()
-                    elif difficulty == ["hard"]:
-                        hardmobencounter()
+                    else:
+                        for i in mobencounterdata1:
+                            if difficulty == (i["difficulty"]):
+                                mobencountered = random.choices(i["mob"],i["mobchances"],k=1)
+                        print ("")
+                        print ("You've encountered a ", (mobencountered), "!")
+                        print ("insert combat system here")
                 elif mobencounter == ["N"]:
                     for i in biomedata1:
                         if currentbiome == (i["name"]):
@@ -55,16 +58,19 @@ while True:
                     print ("You have obtained a", (itemobtained),"!")
                     print ("")
             elif choice == ("fight"):
-                while difficulty == ("peaceful"):
+                if difficulty == ("peaceful"):
                     print ("")
                     print ("Fighting has been disabled as you're on peaceful difficulty.")
                     print ("")
-                while difficulty == ("easy"):
-                    mediummobencounter(1)
-                while difficulty == ("medium"):
-                    hardmobencounter(1)
-                while difficulty == ("hard"):
-                    extrememobencounter(1)
+                else:
+                    print (difficulty)
+                    for i in mobencounterdata1:
+                        if difficulty == (i["difficulty"]):
+                            print ("balls")
+                            mobencountered = random.choices(i["mob"],i["mobchances"],k=1)
+                            print ("")
+                            print ("You've encountered a ", (mobencountered), "!")
+                            print ("insert combat system here")
             elif choice == "mine":
                 # Mining logic
                 easy_mobs_ores = ["coal", "iron", "gold", "Weak Zombie", "Weak Skeleton", "Medium Zombie"]
