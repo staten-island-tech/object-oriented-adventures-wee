@@ -1,12 +1,19 @@
 import random,json
-
-
+mobencounterdata = open("./mobencounters.json", encoding="utf8")
+mobencounterdata1 = json.load(mobencounterdata)
+biomedata = open("./biome.json", encoding="utf8")
+biomedata1 = json.load(biomedata)
+from biome import biomes,biomeweights
 
 # Define variables and lists
 start_game = ""
 choice = "off"
 mobYN = ["Y", "N"]
-encounter_chance = [10, 90]
+encounter_chance = [20, 80]
+currentbiome = ["Plains"]
+difficulty = ["normal"]
+difficulty1 = ["normal"]
+cheats = ["off"]
 
 
 class Mobs:
