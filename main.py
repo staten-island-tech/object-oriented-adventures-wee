@@ -52,11 +52,6 @@ while True:
                         print ("You have obtained a", (itemobtained),"!")
                         print ("")
                     else:
-                        for i in mobencounterdata1:
-                            if difficulty == (i["difficulty"]):
-                                mobencountered = random.choices(i["mob"],i["mobchances"],k=1)
-                        print ("")
-                        print ("You've encountered a ", (mobencountered), "!")
                         print ("insert combat system here")
                 elif mobencounter == ["N"]:
                     for i in biomedata1:
@@ -73,11 +68,6 @@ while True:
                 else:
                     print (difficulty)
                     for i in mobencounterdata1:
-                        if difficulty == (i["difficulty"]):
-                            print ("balls")
-                            mobencountered = random.choices(i["mob"],i["mobchances"],k=1)
-                            print ("")
-                            print ("You've encountered a ", (mobencountered), "!")
                             print ("insert combat system here")
             elif choice == "options":
                 while True:
