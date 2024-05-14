@@ -65,40 +65,6 @@ while True:
                     print ("")
                 else:
                     print ("insert combat system here")
-            elif choice == "options":
-                while True:
-                    print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
-                    option = input("Choose what you want to change: ").lower()
-
-                    if option == "difficulty":
-                        print("\nDifficulty Options: Peaceful | Easy | Medium | Hard")
-                        difficulty = input("Choose the difficulty level: ").lower()
-                        if difficulty not in ["peaceful", "easy", "medium", "hard"]:
-                            print("Invalid difficulty level.")
-                        else:
-                            print("Difficulty set to:", difficulty)
-
-                    elif option == "cheats":
-                        cheats = input("\nDo you want cheats on or off? (On | Off): ").lower()
-                        if cheats not in ["on", "off"]:
-                            print("Invalid choice for cheats.")
-                        else:
-                            print("Cheats set to:", cheats)
-
-                    elif option == "spawn biome":
-                        print("\nAvailable Biomes:", ", ".join(biomes))
-                        current_biome = input("Enter the biome you want to spawn in: ").capitalize()
-                        if current_biome not in biomes:
-                            print("Invalid biome.")
-                        else:
-                            print("Spawn biome set to:", current_biome)                
-                    elif option == "return":
-                        break  # Exit the inner loop
-
-                    else:
-                        print("Invalid option. Please try again.")
-
-
             elif choice == "mine":
                 # Mining logic
                 levels = {
@@ -188,7 +154,37 @@ while True:
 
             else:
                 print("Invalid choice. Please try again.")
-
+    elif start_game == "options":
+        while True:
+            print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
+            option = input("Choose what you want to change: ").lower()
+            if option == "difficulty":
+                print("\nDifficulty Options: Peaceful | Easy | Medium | Hard")
+                difficulty1 = input("Choose the difficulty level: ").lower()
+                if difficulty1 not in ["peaceful", "easy", "medium", "hard"]:
+                    print("Invalid difficulty level.")
+                else:
+                    print("Difficulty set to:", difficulty1)
+                    difficulty = difficulty1
+            elif option == "cheats":
+                cheats1 = input("\nDo you want cheats on or off? (On | Off): ").lower()
+                if cheats1 not in ["on", "off"]:
+                    print("Invalid choice for cheats.")
+                else:
+                    print("Cheats set to:", cheats1)
+                    cheats = cheats1
+            elif option == "spawn biome":
+                print("\nAvailable Biomes:", ", ".join(biomes))
+                currentbiome1 = input("Enter the biome you want to spawn in (CASE SENSITIVE): ")
+                if currentbiome1 not in biomes:
+                    print("Invalid biome.")
+                else:
+                    print("Spawn biome set to:", currentbiome1)      
+                    currentbiome = [currentbiome1]          
+            elif option == "return":
+                break  # Exit the inner loop
+            else:
+                print("Invalid option. Please try again.")
     elif start_game == "exit":
         print("Bye bye!")
         break
