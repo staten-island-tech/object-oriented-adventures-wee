@@ -144,17 +144,13 @@ while True:
                 mine(level)
             
             elif choice == "leave game":
-                print("Bye bye")
-                break
-
-
-            elif choice == "leave game":
-                print("Bye bye")
-                break
+                print("DOESNT WORK CURRENTLY")
+                start_game = "exit"
 
             else:
                 print("Invalid choice. Please try again.")
-    elif start_game == "options":
+
+    if start_game == "options":
         while True:
             print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
             option = input("Choose what you want to change: ").lower()
