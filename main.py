@@ -1,6 +1,4 @@
 import random,json
-mobencounterdata = open("./mobencounters.json", encoding="utf8")
-mobencounterdata1 = json.load(mobencounterdata)
 biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
@@ -66,9 +64,7 @@ while True:
                     print ("Fighting has been disabled as you're on peaceful difficulty.")
                     print ("")
                 else:
-                    print (difficulty)
-                    for i in mobencounterdata1:
-                            print ("insert combat system here")
+                    print ("insert combat system here")
             elif choice == "options":
                 while True:
                     print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
