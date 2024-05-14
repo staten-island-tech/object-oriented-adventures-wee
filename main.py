@@ -1,12 +1,13 @@
-import random
+import random,json
+
+
 
 # Define variables and lists
 start_game = ""
 choice = "off"
 mobYN = ["Y", "N"]
 encounter_chance = [10, 90]
-biomes = ['Badlands', 'Bamboo', 'Beach', 'Birch Forest', 'Cherry Grove', 'Cold Ocean', 'Dark Forest', 'Deep Ocean', 'Desert', 'Flower Forest', 'Forest', 'Frozen Peaks', 'Ice Spikes', 'Jungle', 'Mangrove Swamp', 'Meadow', 'Mooshroom Island', 'Ocean', 'Plains', 'River', 'Savanna', 'Snowy Plains', 'Snowy Taiga', 'Stony Peaks', 'Stony Shore', 'Sunflower Plains', 'Swamp', 'Taiga']
-biome_weights = [3, 2, 5, 4, 2, 2, 4, 2, 6, 2, 8, 2, 2, 3, 2, 2, 1, 5, 10, 4, 4, 3, 3, 4, 3, 2, 3, 7]
+
 
 class Mobs:
     def __init__(self, name, mobhealth, mobdamage):
@@ -26,13 +27,51 @@ while True:
     if start_game == "start":
         print("\nWelcome to Minecraft (ripoff version)!")
         while True:
-            print("Options: Craft | Mine | Explore | Inventory | Store | Fight | Forage | Leave Game")
+            print("Options: Mine | Explore | Inventory | Store | Fight | Forage | Leave Game")
             choice = input("Choose what you want to do: ").lower()
-
             if choice == "explore":
-                # Placeholder for exploration logic
-                pass
-
+                currentbiome = random.choices(biomes,biomeweights,k=1)
+                print("")
+                print("You've successfully travelled to a ", (currentbiome), "biome!")
+                print ("")
+            elif choice == ("forage"):
+                mobencounter = random.choices(mobYN,encounter_chance,k=1)
+                if mobencounter == ["Y"]:
+                    if difficulty == ("peaceful"):
+                        for i in biomedata1:
+                            if currentbiome == (i["name"]):
+                                itemobtained = random.choices(i["loot"],i["chances"],k=1)
+                        print ("")
+                        print ("You have obtained a", (itemobtained),"!")
+                        print ("")
+                    else:
+                        for i in mobencounterdata1:
+                            if difficulty == (i["difficulty"]):
+                                mobencountered = random.choices(i["mob"],i["mobchances"],k=1)
+                        print ("")
+                        print ("You've encountered a ", (mobencountered), "!")
+                        print ("insert combat system here")
+                elif mobencounter == ["N"]:
+                    for i in biomedata1:
+                        if currentbiome == (i["name"]):
+                            itemobtained = random.choices(i["loot"],i["chances"],k=1)
+                    print ("")
+                    print ("You have obtained a", (itemobtained),"!")
+                    print ("")
+            elif choice == ("fight"):
+                if difficulty == ("peaceful"):
+                    print ("")
+                    print ("Fighting has been disabled as you're on peaceful difficulty.")
+                    print ("")
+                else:
+                    print (difficulty)
+                    for i in mobencounterdata1:
+                        if difficulty == (i["difficulty"]):
+                            print ("balls")
+                            mobencountered = random.choices(i["mob"],i["mobchances"],k=1)
+                            print ("")
+                            print ("You've encountered a ", (mobencountered), "!")
+                            print ("insert combat system here")
             elif choice == "options":
                 while True:
                     print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
