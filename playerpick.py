@@ -15,10 +15,10 @@ class Weapon:
     
 bow=Weapon(0.8, 0.5)
 sword=Weapon(0.9, 0.7)
-GreatSoword=Weapon(0.5, 0.5)
+greatsword=Weapon(0.5, 0.5)
 
 
 characterpick=input("who you wanna pick(Berserker, Archer, or Tank)")
 if characterpick == "Berserker":
-    print(Beserker)
+    
 
