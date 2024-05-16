@@ -14,7 +14,6 @@ difficulty = ["normal"]
 difficulty1 = ["normal"]
 cheats = ["off"]
 
-
 class Mobs:
     def __init__(self, name, mobhealth, mobdamage):
         self.mobhealth=mobhealth
@@ -28,30 +27,11 @@ player=Player(50, 10)
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
-    class Character:
-        def __init__(player, damage, health, starterweapon):
-            player.damage=damage
-            player.health=health
-            player.starterweapon=starterweapon
 
-        Archer=Character(35,15, "bow")
-        Beserker=Character(50, 10, "Sword")
-        Tank=Character(100, 30, "GreatSword")
-
-    class Weapon:
-        def __init__(self, weapon_hitchance, weapon_critchance):
-                    self.weapon_hitchance=weapon_hitchance
-                    self.weapon_hitchance=weapon_critchance
-                
-        bow=Weapon(0.8, 0.5)
-        sword=Weapon(0.9, 0.7)
-        greatsword=Weapon(0.5, 0.5)
-
-        characterpick=input("who you wanna pick(Berserker, Archer, or Tank)")
-        if characterpick == "Berserker":
-            print(f"you have chosen {characterpick.upper()} and your starter wepon is a sword. you have {sword.weapon_hitchance} hit chance")
-            start_game = input("What do you want to do?: ").lower()
             
+
+    start_game = input("What do you want to do?: ").lower()
+
     if start_game == "start":
         print("\nWelcome to Minecraft (ripoff version)!")
         while True:
@@ -108,7 +88,6 @@ while True:
                         "ores": ["lapis", "diamond", "dragon ingot"]
                     }
                 }
-
                 def choose_level():
                     while True:
                         level = input("Choose a mining difficulty (Easy, Medium, Hard, Extreme): ").lower()
@@ -116,7 +95,6 @@ while True:
                             return level
                         else:
                             print("Invalid difficulty. Please choose again.")
-
                 def mine(level):
                     print(f"You have entered the {level} mines")
                     while True:
@@ -128,13 +106,10 @@ while True:
                             possible_outcomes = levels[level]['mobs'] + levels[level]['ores']
                             weights = [3] * len(levels[level]['mobs']) + [1] * len(levels[level]['ores'])
                             random_MO = random.choices(possible_outcomes, weights=weights, k=1)[0]
-                            
                             if random_MO in levels[level]["mobs"]:
                                 mob = random_MO
                                 print(f"A {mob.name} appeared!")
                                 while random_MO in levels[level]['mobs']:
-                                    
-                                
                                         player.health -= mob.mobdamage
                                         print(f"The {mob.name} attacked you. Your health is now {player.health}")
                                         if player.health <= 0:
@@ -144,20 +119,15 @@ while True:
                                         if attack_run.lower() == "attack":
                                             mob.mobhealth -= player.damage
                                             print(f"You attacked the {mob.name}. Its health is now {mob.mobhealth}")
-                                        
                                             if mob.mobhealth <= 0:
                                                 print(f"Congratulations, you defeated the {mob.name}!")
                                                 mob.mobhealth=25
                                                 break
-                                        
-
                                         elif attack_run.lower() == "run":
                                                     print(f"You successfully ran away from the {mob.name}.")
                                                     break
-
                                         else:
                                             print("Invalid input. Please enter 'Attack' or 'Run'.")
-                                        
                                 else:
                                     ore = random_MO
                                     print(f"You found {ore} ore.")
@@ -165,15 +135,13 @@ while True:
                                 print("Invalid choice. Please choose 'Mine' or 'Leave'.")
                 level = choose_level()
                 mine(level)
-            
             elif choice == "leave game":
-                print("DOESNT WORK CURRENTLY")
-                start_game = "exit"
-
+                print("")
+                start_game == "exit"
+                break
             else:
                 print("Invalid choice. Please try again.")
-
-    if start_game == "options":
+    elif start_game == "options":
         while True:
             print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
             option = input("Choose what you want to change: ").lower()
@@ -207,6 +175,5 @@ while True:
     elif start_game == "exit":
         print("Bye bye!")
         break
-
     else:
         print("Invalid choice. Please try again.")
