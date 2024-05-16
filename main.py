@@ -1,4 +1,5 @@
-import random,json
+import random
+import json
 mobencounterdata = open("./mobencounters.json", encoding="utf8")
 mobencounterdata1 = json.load(mobencounterdata)
 biomedata = open("./biome.json", encoding="utf8")
@@ -29,8 +30,30 @@ player=Player(50, 10)
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
-    start_game = input("What do you want to do?: ").lower()
-    
+    class Character:
+        def __init__(player, damage, health, starterweapon):
+            player.damage=damage
+            player.health=health
+            player.starterweapon=starterweapon
+
+        Archer=Character(35,15, "bow")
+        Beserker=Character(50, 10, "Sword")
+        Tank=Character(100, 30, "GreatSword")
+
+    class Weapon:
+        def __init__(self, weapon_hitchance, weapon_critchance):
+                    self.weapon_hitchance=weapon_hitchance
+                    self.weapon_hitchance=weapon_critchance
+                
+        bow=Weapon(0.8, 0.5)
+        sword=Weapon(0.9, 0.7)
+        greatsword=Weapon(0.5, 0.5)
+
+        characterpick=input("who you wanna pick(Berserker, Archer, or Tank)")
+        if characterpick == "Berserker":
+            print(f"you have chosen {characterpick.upper()} and your starter wepon is a sword. you have {sword.weapon_hitchance} hit chance")
+            start_game = input("What do you want to do?: ").lower()
+            
     if start_game == "start":
         print("\nWelcome to Minecraft (ripoff version)!")
         while True:
