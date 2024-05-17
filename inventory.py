@@ -39,7 +39,7 @@ class InventoryInstance:
         self.UpdateData()
 
 
-with open("Python\Prac\EasonStuff\Data.json", mode='r') as infile:
+with open("Data.json", mode='r') as infile:
     Data = json.load(infile)
 
 PracticeInventoryInstance = InventoryInstance(Data, "Slot1")
