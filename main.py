@@ -128,7 +128,7 @@ while True:
                                                     break
                                         else:
                                             print("Invalid input. Please enter 'Attack' or 'Run'.")
-                                else:
+                            elif random_MO in levels[level]["ores"]:
                                     ore = random_MO
                                     print(f"You found {ore} ore.")
                             else:
