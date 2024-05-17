@@ -1,5 +1,5 @@
-import json, os, time, sys
-from inventory import Inventory
+import json, time, sys
+from inventory import  PracticeInventoryInstance
 
 class Item:
     def __init__(self, name, price):
@@ -67,6 +67,7 @@ class Store:
                 sure = input("Are you sure you want to buy this? (Y/N): ")
                 if sure.upper() == "Y":
                     print("You have purchased a", item.name)
+
                     return item
                 else:
                     return None
@@ -96,13 +97,8 @@ def main():
             item_name = input("Enter the name of the item you want to buy (Sword & Pickaxe tiers: Wooden, Stone, Iron, Diamond, Netherite, God | Armor tiers: Leather, Chainmail, Iron, Diamond, Netherite, God): ")
             if item_type.lower() == "sword" or item_type.lower() == "pickaxe" or item_type.lower() == "armor":
                 item = store.buy_item(item_name)
-                if item:
-                    new_file = "inventory.json"
-                    with open(new_file, "w") as f:
-                        json_string = json.dumps(item)
-                        f.write(json_string)
-                    os.rename(new_file, "inventory.json")
-                    pass
+                item
+            
             else:
                 print("Invalid item type.")
         elif store_option == "Sell":
@@ -135,6 +131,7 @@ def main():
                     if sure.upper() == "Y":
                         print("You have sold ", Quantity ,Data["Name"], "and earned", Profit, "ducats")
                         print("You now have", New_Quantity, Data["Name"])
+                        PracticeInventoryInstance.RemoveItem()
                     else:
                         S = "S"
                 

@@ -1,1 +1,14 @@
-[{"Name": "Rotten flesh", "Quantity": 4, "Sell value": 2}, {"Name": "String", "Quantity": 2, "Sell value": 5}]
+{
+    "Slot1": {
+        "Name": "Eason Chen",
+        "Inventory": [
+            {
+                "Name": {
+                    "Name": "String",
+                    "Quantity": 2,
+                    "Sell value": 3
+                }
+            }
+        ]
+    }
+}
