@@ -3,7 +3,7 @@
         "Name": "Eason Chen",
         "Inventory": [
             {
-                "Name": {
+                "Item": {
                     "Name": "String",
                     "Quantity": 2,
                     "Sell value": 3

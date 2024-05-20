@@ -39,4 +39,3 @@ with open("inventory.json", mode='r') as infile:
 
 PracticeInventoryInstance = InventoryInstance(Data, "Slot1")
 
-""" PracticeInventoryInstance.RemoveItem({"SkibidiToilet": {"Description": "SKIBIDI TOIL!!!"}}) """
