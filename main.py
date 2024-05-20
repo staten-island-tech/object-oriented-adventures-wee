@@ -2,7 +2,7 @@ import random
 import json
 biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
-from biome import biomes,biomeweights
+from biome import biomes.biomeweights
 
 # Define variables and lists
 start_game = ""
