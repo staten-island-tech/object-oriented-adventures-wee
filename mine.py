@@ -72,3 +72,6 @@ def mine(level):
                     print(f"You found {ore} ore.")
         else:
             print("Invalid choice. Please choose 'Mine' or 'Leave'.")
+level = choose_level()
+mine(level)
+  
