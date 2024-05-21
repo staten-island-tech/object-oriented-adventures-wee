@@ -137,12 +137,9 @@ def main():
                         print("You now have", New_Quantity, Data["Name"])
                     else:
                         S = "S"
-                
-
+            
         elif store_option == "Exit":
             print("Goodbye!")
             break
         else:
             print("Invalid option. Please choose Buy, Sell, or Exit.")
-
-main()
