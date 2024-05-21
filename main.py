@@ -132,7 +132,6 @@ while True:
                 mine(level)
             elif choice == "leave game":
                 print("")
-                start_game == "exit"
                 break
             else:
                 print("Invalid choice. Please try again.")
