@@ -17,7 +17,7 @@ class Inventory:
             print("Item quantity:", Data["Quantity"])
             print("Sell value:", Data["Sell value"])
 
-class InventoryInstance:
+""" class InventoryInstance:
     def __init__(self, data, SlotName) -> None:
         self.data: dict = data # Dictionary
         self.inventory: list[dict] = data[SlotName]["Inventory"] # List of dictionaries
@@ -37,5 +37,5 @@ class InventoryInstance:
 with open("inventory.json", mode='r') as infile:
     Data = json.load(infile)
 
-PracticeInventoryInstance = InventoryInstance(Data, "Slot1")
+PracticeInventoryInstance = InventoryInstance(Data, "Slot1") """
 

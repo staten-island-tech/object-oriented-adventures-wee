@@ -1,5 +1,5 @@
 import json
-from inventory import  PracticeInventoryInstance
+""" from inventory import  PracticeInventoryInstance """
 
 class Item:
     def __init__(self, name, price):
@@ -90,23 +90,21 @@ def main():
     while True:
         store_option = input("What do you want to do? (Buy | Sell | Exit): ")
         if store_option == "Buy":
-            item_type = input("What type of item do you want to buy? (Sword | Pickaxe | Armor): ")
-            if item_type.lower == "sword":
-                item_name = input("Enter the name and tier of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
-                Y = "Y"
-            elif item_type.lower == "pickaxe":
-                item_name = input("Enter the name and tier of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God: ")
-                Y = "Y"
-            elif item_type.lower == "armor":
-                item_name = input("Enter the name and tier of the item you want to buy (Tiers: Leather, Chainmail, Iron, Diamond, Netherite, God): ")
-                Y = "Y"
+            item_type = input("What type of item do you want to buy? - Case sensitive - (Sword | Pickaxe | Armor): ")
+            if item_type == "Sword":
+                item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
+                item = store.buy_item(item_name)
+                item
+            elif item_type == "Pickaxe":
+                item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
+                item = store.buy_item(item_name)
+                item
+            elif item_type == "Armor":
+                item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Leather, Chainmail, Iron, Diamond, Netherite, God): ")
+                item = store.buy_item(item_name)
+                item
             else:
-                if Y == "Y":
-                    item = store.buy_item(item_name)
-                    item
-                    break
-                else:
-                    print("Invalid item type.")
+                print("Invalid item type.")
 
         elif store_option == "Sell":
             S = "S"
@@ -138,7 +136,7 @@ def main():
                     if sure.upper() == "Y":
                         print("You have sold ", Quantity ,Data["Name"], "and earned", Profit, "ducats")
                         print("You now have", New_Quantity, Data["Name"])
-                        PracticeInventoryInstance.RemoveItem({ITEM: {"Description": "SKIBIDI TOIL!!!"}})
+                        """PracticeInventoryInstance.RemoveItem({ITEM: {"Description": "SKIBIDI TOIL!!!"}}) """
                     else:
                         S = "S"
                 

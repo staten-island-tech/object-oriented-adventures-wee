@@ -1,14 +1,22 @@
-{
-    "Slot1": {
-        "Name": "Eason Chen",
-        "Inventory": [
-            {
-                "Item": {
-                    "Name": "String",
-                    "Quantity": 2,
-                    "Sell value": 3
-                }
-            }
-        ]
+[
+    {
+        "Name": "Flesh",
+        "Quantity": 3,
+        "Sell value": 2
+    },
+    {
+        "Name": "String",
+        "Quantity": 2,
+        "Sell value": 5
+    },
+    {
+        "Name": "Gunpowder",
+        "Quantity": 2,
+        "Sell value": 10
+    },
+    {
+        "Name": "Oak log",
+        "Quantity": 2,
+        "Sell value": 4
     }
-}
+]
