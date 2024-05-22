@@ -4,9 +4,12 @@ class Character:
         player.health=health
         player.starterweapon=starterweapon
 
-Archer=Character(35,15, "bow")
-Beserker=Character(50, 10, "Sword")
-Tank=Character(100, 30, "GreatSword")
+Archer=Character(20,40, "bow")
+Beserker=Character(15, 50, "Sword")
+Tank=Character(30, 100, "GreatSword")
+Assasin=Character(25, 30, "dagger")
+
+
 
 class Weapon:
     def __init__(self, weapon_hitchance, weapon_critchance):
@@ -20,5 +23,11 @@ greatsword=Weapon(0.5, 0.5)
 
 characterpick=input("who you wanna pick(Berserker, Archer, or Tank)")
 if characterpick == "Berserker":
+    Beserker
+if characterpick == "Berserker":
+    Beserker
+if characterpick == "Berserker":
+    Beserker
+
     
 
