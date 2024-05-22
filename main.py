@@ -1,9 +1,9 @@
-import random
-import json
+import random,json
 biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
-from mine import CaveMobs, choose_level, mine
+
+
 
 # Define variables and lists
 start_game = ""
@@ -15,31 +15,25 @@ difficulty = ["normal"]
 difficulty1 = ["normal"]
 cheats = ["off"]
 
-
+class Mobs:
+    def __init__(self, name, mobhealth, mobdamage):
+        self.mobhealth=mobhealth
+        self.mobdamage=mobdamage
+        self.name=name
 class Player:
     def __init__(self, health, damage):
         self.health=health
         self.damage=damage
 player=Player(50, 10)
-
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
-
-            
-
     start_game = input("What do you want to do?: ").lower()
-    
     if start_game == "start":
         print("\nWelcome to Minecraft (ripoff version)!")
         while True:
             print("Options: Mine | Explore | Inventory | Store | Fight | Forage | Leave Game")
             choice = input("Choose what you want to do: ").lower()
-            while player.health <= (0):
-                print("")
-                print("You died! Returning to the start screen...")
-                start_game == "exit"
-                break
             if choice == "explore":
                 currentbiome = random.choices(biomes,biomeweights,k=1)
                 print("")
@@ -73,18 +67,16 @@ while True:
                     print ("insert combat system here")
             elif choice == "mine":
                 # Mining logic
+                from mine import levels
+                from mine import choose_level, mine
                 level = choose_level()
                 mine(level)
-            
             elif choice == "leave game":
                 print("")
-                start_game == "exit"
                 break
-
             else:
                 print("Invalid choice. Please try again.")
-
-    if start_game == "options":
+    elif start_game == "options":
         while True:
             print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
             option = input("Choose what you want to change: ").lower()
@@ -118,6 +110,5 @@ while True:
     elif start_game == "exit":
         print("Bye bye!")
         break
-
     else:
         print("Invalid choice. Please try again.")
