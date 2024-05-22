@@ -37,5 +37,5 @@ class Inventory:
 with open("inventory.json", mode='r') as infile:
     Data = json.load(infile)
 
-PracticeInventoryInstance = InventoryInstance(Data, "Slot1") """
-
+PracticeInventoryInstance = InventoryInstance(Data, "Slot1") 
+ """

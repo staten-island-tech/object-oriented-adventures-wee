@@ -1,4 +1,4 @@
-import json
+import json, os
 """ from inventory import  PracticeInventoryInstance """
 
 class Item:
@@ -13,12 +13,21 @@ class Item:
 class Sword(Item):
     def __init__(self, name, price, damage, crit_percent):
         super().__init__(name, price)
+        self.name = name
+        self.price = price
         self.damage = damage
         self.crit_percent = crit_percent
     def display_info(self):
         super().display_info()
         print("Damage:", self.damage)
         print("Crit percent:", self.crit_percent)
+    def to_dict(self):
+        return {
+            "Name": self.name,
+            "Price": self.price,
+            "Damage": self.damage,
+            "Crit percent": self.crit_percent
+        }
 
 class Pickaxe(Item):
     def __init__(self, name, price, mining_power):
@@ -27,6 +36,12 @@ class Pickaxe(Item):
     def display_info(self):
         super().display_info()
         print("Mining Power:", self.mining_power)
+    def to_dict(self):
+        return {
+            "Name": self.name,
+            "Price": self.price,
+            "Mining power": self.mining_power
+        }
 
 class Armor(Item):
     def __init__(self, name, price, health_boost):
@@ -35,6 +50,12 @@ class Armor(Item):
     def display_info(self):
         super().display_info()
         print("Health Boost:", self.health_boost)
+    def to_dict(self):
+        return {
+            "Name": self.name,
+            "Price": self.price,
+            "Health boost": self.health_boost
+        }
 
 
 
@@ -84,7 +105,8 @@ class Store:
 
 with open("inventory.json", "r") as f:
     inventory = json.load(f)
-
+with open("player_inventory.json", "r") as f:
+    player = json.load(f)
 def main():
     store = Store()
     while True:
@@ -95,6 +117,8 @@ def main():
                 item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
                 item = store.buy_item(item_name)
                 item
+                info = item
+                player.append(info.to_dict())
             elif item_type == "Pickaxe":
                 item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
                 item = store.buy_item(item_name)
@@ -148,3 +172,14 @@ def main():
             print("Invalid option. Please choose Buy, Sell, or Exit.")
 
 main()
+
+
+
+new_file = "updated.json"
+with open(new_file, "w") as f:
+    json_string = json.dumps(player)
+    f.write(json_string)
+
+
+os.remove("player_inventory.json")
+os.rename(new_file, "player_inventory.json")
