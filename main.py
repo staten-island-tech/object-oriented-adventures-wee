@@ -30,7 +30,7 @@ while True:
     if start_game == "start":
         print("\nWelcome to Minecraft (ripoff version)!")
         while True:
-            print("Options: Mine | Explore | Inventory | Store | Fight | Forage | Leave Game")
+            print("Options: Mine | Explore | Inventory | Store | Forage | Leave Game")
             choice = input("Choose what you want to do: ").lower()
             if choice == "explore":
                 currentbiome = random.choices(biomes,biomeweights,k=1)
@@ -48,7 +48,37 @@ while True:
                         print ("You have obtained a", (itemobtained),"!")
                         print ("")
                     else:
-                        print ("insert combat system here")
+                        if difficulty == ["easy"]:
+                            mobname = [Mobs("Weak Zombie", 25, 10), Mobs("Weak Skeleton", 25, 10)]
+                            mobchances = [3,2]
+                        elif difficulty == ["normal"]:
+                            mobname = [Mobs("Medium Zombie", 40, 20), Mobs("Medium Skeleton", 40, 20)]
+                            mobchances = [3,2]
+                        elif difficulty == ["hard"]:
+                            mobname = [Mobs("Hard Zombie", 80, 40), Mobs("Hard Skeleton", 80, 40)]
+                            mobchances = [3,2]
+                        random_MO = random.choices(mobname, mobchances)
+                        mob = [random_MO]
+                        print(f"A {mob.name} appeared!")
+                        while random_MO in mobname:
+                            player.health -= mob.mobdamage
+                            print(f"The {mob.name} attacked you. Your health is now {player.health}")
+                            if player.health <= 0:
+                                print("You were defeated by the mob!")
+                                break
+                            attack_run = input("What would you like to do? (Attack/Run): ")
+                            if attack_run.lower() == "attack":
+                                mob.mobhealth -= player.damage
+                                print(f"You attacked the {mob.name}. Its health is now {mob.mobhealth}")
+                                if mob.mobhealth <= 0:
+                                    print(f"Congratulations, you defeated the {mob.name}!")
+                                    mob.mobhealth=25
+                                    break
+                            elif attack_run.lower() == "run":
+                                print(f"You successfully ran away from the {mob.name}.")
+                                break
+                            else:
+                                print("Invalid input. Please enter 'Attack' or 'Run'.")
                 elif mobencounter == ["N"]:
                     for i in biomedata1:
                         if currentbiome == (i["name"]):
@@ -56,13 +86,6 @@ while True:
                     print ("")
                     print ("You have obtained a", (itemobtained),"!")
                     print ("")
-            elif choice == ("fight"):
-                if difficulty == ("peaceful"):
-                    print ("")
-                    print ("Fighting has been disabled as you're on peaceful difficulty.")
-                    print ("")
-                else:
-                    print ("insert combat system here")
             elif choice == "mine":
                 # Mining logic
                 levels = {
@@ -99,7 +122,7 @@ while True:
                             return
                         elif choice == "mine":
                             possible_outcomes = levels[level]['mobs'] + levels[level]['ores']
-                            weights = [3] * len(levels[level]['mobs']) + [1] * len(levels[level]['ores'])
+                            weights = [1] * len(levels[level]['mobs']) + [3] * len(levels[level]['ores'])
                             random_MO = random.choices(possible_outcomes, weights=weights, k=1)[0]
                             if random_MO in levels[level]["mobs"]:
                                 mob = random_MO
