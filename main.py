@@ -64,7 +64,8 @@ while True:
                     print ("Fighting has been disabled as you're on peaceful difficulty.")
                     print ("")
                 else:
-                    print ("insert combat system here")
+                    from fight import Boss, Bossfight
+                    Bossfight(Boss)
             elif choice == "mine":
                 # Mining logic
                 from mine import levels
