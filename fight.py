@@ -38,5 +38,9 @@ def Bossfight(x):
         elif attack_run.lower() == "run":
                     print(f"You successfully ran away from the boss.")
                     break
-
-
+        else:
+             print("please select Attack or RUn")
+    
+        
+        
+    

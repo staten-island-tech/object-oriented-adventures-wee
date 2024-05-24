@@ -24,7 +24,7 @@ class Player:
     def __init__(self, health, damage):
         self.health=health
         self.damage=damage
-player=Player(10000, 10)
+player=Player(10000, 100)
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
