@@ -9,8 +9,6 @@ Beserker=Character(15, 50, "Sword")
 Tank=Character(30, 100, "GreatSword")
 Assasin=Character(25, 30, "dagger")
 
-
-
 class Weapon:
     def __init__(self, weapon_hitchance, weapon_critchance):
         self.weapon_hitchance=weapon_hitchance
@@ -21,7 +19,7 @@ sword=Weapon(0.9, 0.7)
 greatsword=Weapon(0.5, 0.5)
 
 
-characterpick=input("who you wanna pick(Berserker, Archer, or Tank)")
+characterpick=input("who you wanna pick(Berserker, Archer, Tank,or Assasin")
 if characterpick == "Berserker":
     Beserker
 if characterpick == "Berserker":

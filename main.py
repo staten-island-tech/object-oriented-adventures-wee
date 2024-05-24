@@ -24,7 +24,7 @@ class Player:
     def __init__(self, health, damage):
         self.health=health
         self.damage=damage
-player=Player(50, 10)
+player=Player(10000, 10)
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
@@ -65,6 +65,7 @@ while True:
                     print ("")
                 else:
                     from fight import Boss, Bossfight
+                
                     Bossfight(Boss)
             elif choice == "mine":
                 # Mining logic
