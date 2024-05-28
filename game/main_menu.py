@@ -23,9 +23,8 @@ class MainMenu:
     def start_game():
         print("")
         print_slow("Starting game")
-        print_slower("............")
-        print_slower("wait just a little longer")
-        print_slower("           ")
+        print_slower("...")
+        print_slower("     ")
         print("")
         print_slow("Game done loading")
         print("")
