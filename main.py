@@ -24,7 +24,7 @@ class Player:
     def __init__(self, health, damage):
         self.health=health
         self.damage=damage
-player=Player(50, 10)
+player=Player(10000, 10)
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
@@ -64,7 +64,9 @@ while True:
                     print ("Fighting has been disabled as you're on peaceful difficulty.")
                     print ("")
                 else:
-                    print ("insert combat system here")
+                    from fight import Boss, Bossfight
+                
+                    Bossfight(Boss)
             elif choice == "mine":
                 # Mining logic
                 from mine import levels
@@ -112,3 +114,4 @@ while True:
         break
     else:
         print("Invalid choice. Please try again.")
+        

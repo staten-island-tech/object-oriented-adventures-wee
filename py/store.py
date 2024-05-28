@@ -1,5 +1,5 @@
-import json, os, time, sys
-from inventory import Inventory
+import json, os
+""" from inventory import  PracticeInventoryInstance """
 
 class Item:
     def __init__(self, name, price):
@@ -13,12 +13,21 @@ class Item:
 class Sword(Item):
     def __init__(self, name, price, damage, crit_percent):
         super().__init__(name, price)
+        self.name = name
+        self.price = price
         self.damage = damage
         self.crit_percent = crit_percent
     def display_info(self):
         super().display_info()
         print("Damage:", self.damage)
         print("Crit percent:", self.crit_percent)
+    def to_dict(self):
+        return {
+            "Name": self.name,
+            "Price": self.price,
+            "Damage": self.damage,
+            "Crit percent": self.crit_percent
+        }
 
 class Pickaxe(Item):
     def __init__(self, name, price, mining_power):
@@ -27,6 +36,12 @@ class Pickaxe(Item):
     def display_info(self):
         super().display_info()
         print("Mining Power:", self.mining_power)
+    def to_dict(self):
+        return {
+            "Name": self.name,
+            "Price": self.price,
+            "Mining power": self.mining_power
+        }
 
 class Armor(Item):
     def __init__(self, name, price, health_boost):
@@ -35,12 +50,14 @@ class Armor(Item):
     def display_info(self):
         super().display_info()
         print("Health Boost:", self.health_boost)
+    def to_dict(self):
+        return {
+            "Name": self.name,
+            "Price": self.price,
+            "Health boost": self.health_boost
+        }
 
-def print_slow(str):
-    for letter in str:
-        sys.stdout.write(letter)
-        sys.stdout.flush()
-        time.sleep(0.01)
+
 
 class Store:
     def __init__(self):
@@ -67,6 +84,8 @@ class Store:
                 sure = input("Are you sure you want to buy this? (Y/N): ")
                 if sure.upper() == "Y":
                     print("You have purchased a", item.name)
+                    info = Sword(item)
+                    player.append(info.to_dict())
                     return item
                 else:
                     return None
@@ -83,31 +102,36 @@ class Store:
                     return None
         print("Item not found in inventory.")
         return None
+    
 
 with open("inventory.json", "r") as f:
     inventory = json.load(f)
-
+with open("player_inventory.json", "r") as f:
+    player = json.load(f)
 def main():
     store = Store()
     while True:
         store_option = input("What do you want to do? (Buy | Sell | Exit): ")
         if store_option == "Buy":
-            item_type = input("What type of item do you want to buy? (Sword | Pickaxe | Armor): ")
-            item_name = input("Enter the name of the item you want to buy (Sword & Pickaxe tiers: Wooden, Stone, Iron, Diamond, Netherite, God | Armor tiers: Leather, Chainmail, Iron, Diamond, Netherite, God): ")
-            if item_type.lower() == "sword" or item_type.lower() == "pickaxe" or item_type.lower() == "armor":
+            item_type = input("What type of item do you want to buy? - Case sensitive - (Sword | Pickaxe | Armor): ")
+            if item_type == "Sword":
+                item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
                 item = store.buy_item(item_name)
-                if item:
-                    new_file = "inventory.json"
-                    with open(new_file, "w") as f:
-                        json_string = json.dumps(item)
-                        f.write(json_string)
-                    os.rename(new_file, "inventory.json")
-                    pass
+                item
+            elif item_type == "Pickaxe":
+                item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
+                item = store.buy_item(item_name)
+                item
+            elif item_type == "Armor":
+                item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Leather, Chainmail, Iron, Diamond, Netherite, God): ")
+                item = store.buy_item(item_name)
+                item
             else:
                 print("Invalid item type.")
+
         elif store_option == "Sell":
-            S = "S"
-            while S == "S":
+            E = "E"
+            while E == "E":
                 I = "I"
                 for Data in inventory:
                     print("Item name:", Data["Name"]) 
@@ -115,31 +139,48 @@ def main():
                     print("Sell value:", Data["Sell value"])
                 while I == "I":
                     ITEM = input("What do you want to sell? Choose 1 : ")
-                    if ITEM == (Data["Name"]):
+                    if ITEM == Data["Name"]:
                         print("You currently have", Data["Quantity"], Data["Name"])
                         I = "A"
                         Q = "Q"
                     else:
-                        print_slow("You don't have that item, type again: ")
+                        print("You don't have that item")
                 while Q == "Q":
                     Quantity = int(input("How much of that item do you want to sell?: "))
                     if Quantity <= (Data["Quantity"]):
                         New_Quantity = (Data["Quantity"]) - Quantity
                         Profit = Quantity * (Data["Sell value"])
                         print("You are going sell", Data["Quantity"], Data["Name"])
-                        s = "S"
+                        S = "S"
+                        Q = "q"
                     else:
                         print("You don't have that much items")
-                while s == "S":
+                while S == "S":
                     sure = input("Are you sure you want to sell", Data["Quantity"], Data["Name"])
                     if sure.upper() == "Y":
                         print("You have sold ", Quantity ,Data["Name"], "and earned", Profit, "ducats")
                         print("You now have", New_Quantity, Data["Name"])
+                        """PracticeInventoryInstance.RemoveItem({ITEM: {"Description": "SKIBIDI TOIL!!!"}}) """
+                        S = "s"
                     else:
-                        S = "S"
-            
+                        E = "E"
+                
+
         elif store_option == "Exit":
             print("Goodbye!")
             break
         else:
             print("Invalid option. Please choose Buy, Sell, or Exit.")
+
+main()
+
+
+
+new_file = "updated.json"
+with open(new_file, "w") as f:
+    json_string = json.dumps(player)
+    f.write(json_string)
+
+
+os.remove("player_inventory.json")
+os.rename(new_file, "player_inventory.json")
