@@ -1,6 +1,7 @@
 from Player import Player
 from app1 import print_slow, print_slower
 from time import sleep
+from Storyline import Storyline
 class MainMenu:
     def __init__(self):
         self.options = {
@@ -73,6 +74,11 @@ class PlayerSelectionMenu:
         print("")
         print_slow("Tank selected")
         print("")
+        print_slow("Your Stats:")
+        print("")
+        print_slow("Health: 100")
+        print("")
+        print_slow("Damage: 30")
         # Create a Warrior player and proceed with the game
         player = Player("Tank")
         storyline = Storyline(player)
@@ -82,6 +88,11 @@ class PlayerSelectionMenu:
         print("")
         print_slow("Berserker selected")
         print("")
+        print_slow("Your Stats:")
+        print("")
+        print_slow("Health: 75")
+        print("")
+        print_slow("Damage: 45")
         # Create a Warrior player and proceed with the game
         player = Player("Berserker")
         storyline = Storyline(player)
@@ -91,6 +102,11 @@ class PlayerSelectionMenu:
         print("")
         print_slow("Archer selected")
         print("")
+        print_slow("Your Stats:")
+        print("")
+        print_slow("Health: 40")
+        print("")
+        print_slow("Damage: 60")
         # Create an Archer player and proceed with the game
         player = Player("Archer")
         storyline = Storyline(player)
@@ -100,6 +116,11 @@ class PlayerSelectionMenu:
         print("")
         print_slow("Assassin selected")
         print("")
+        print_slow("Your Stats:")
+        print("")
+        print_slow("Health: 50")
+        print("")
+        print_slow("Damage: 50")
         # Create a Mage player and proceed with the game
         player = Player("Assassin")
         storyline = Storyline(player)
@@ -108,16 +129,6 @@ class PlayerSelectionMenu:
     def back_to_main(self):
         main_menu = MainMenu()
         main_menu.display()
-
-class Storyline:
-    def __init__(self, player):
-        self.player = player
-
-    def start(self):
-        print("")
-        print_slow(f"Starting storyline for {self.player.role}")
-        print("")
-        pass
         
 
 
