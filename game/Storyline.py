@@ -6,7 +6,7 @@ class Storyline:
     def start(self):
         print("")
         print_slow(f"Starting storyline for {self.player.role}...")
-        print_slow("     ")
+        print_slower("     ")
         if self.player.role == "Tank":
             print("")
             print_slower("u are a tank")
@@ -16,11 +16,12 @@ class Storyline:
             print("")
         elif self.player.role == "Archer":
             print("")
-            print_slower("u are a archer")
+            print_slow("You are a child of a prestigious and skilled marksman from a noble family")
             print("")
+            print_slow("You've always dreamt of exploring the world, and now that you're an adult")
+
         elif self.player.role == "Assassin":
             print("")
             print_slower("u are a assassin")
             print("")
-        print_slow("what'd u expect :/")
         pass

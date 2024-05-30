@@ -1,27 +1,33 @@
 from Player import Player
 from app1 import print_slow, print_slower
-from time import sleep
 from Storyline import Storyline
 class MainMenu:
     def __init__(self):
-        self.options = {
+        self.Options = {
             "1": self.start_game,
-            "2": self.quit_game
+            "2": self.options,
+            "3": self.quit_game
         }
 
-    def display(self):
+    def Begin(self):
         while True:
+            print("")
             print_slow("Main Menu")
+            print("")
             print_slow("1. Start Game")
-            print_slow("2. Quit Game")
+            print("")
+            print_slow("2. Options")
+            print("")
+            print_slow("3. Quit Game")
+            print("")
             choice = input("Choose an option: ")
-            action = self.options.get(choice)
+            action = self.Options.get(choice)
             if action:
                 action()
             else:
                 print(f"{choice} is not a valid choice")
 
-    def start_game():
+    def start_game(self):
         print("")
         print_slow("Starting game")
         print_slower("...")
@@ -29,13 +35,17 @@ class MainMenu:
         print("")
         print_slow("Game done loading")
         print("")
-        # Initialize the player selection menu and start the game
         player_selection_menu = PlayerSelectionMenu()
-        player_selection_menu.display()
+        player_selection_menu.Selection()
+
+    def options(self):
+        print("lmao")
 
     def quit_game(self):
         print_slow("Thank you for playing!")
         exit()
+
+
 
 class PlayerSelectionMenu:
     def __init__(self):
@@ -47,7 +57,7 @@ class PlayerSelectionMenu:
             "5": self.back_to_main
         }
 
-    def display(self):
+    def Selection(self):
         print_slow("Player Selection Menu")
         print("")
         while True:
@@ -61,7 +71,7 @@ class PlayerSelectionMenu:
             print("")
             print_slow("5. Back to Main Menu")
             print("")
-            choice = input("Choose a character: ")
+            choice = input("Choose a number: ")
             action = self.options.get(choice)
             if action:
                 action()
@@ -69,6 +79,10 @@ class PlayerSelectionMenu:
             else:
                 print_slow(f"{choice} is not a valid choice")
                 print("")
+
+    def back_to_main(self):
+        main_menu = MainMenu()
+        main_menu.Begin()
 
     def select_tank(self):
         print("")
@@ -125,12 +139,8 @@ class PlayerSelectionMenu:
         player = Player("Assassin")
         storyline = Storyline(player)
         storyline.start()
-
-    def back_to_main(self):
-        main_menu = MainMenu()
-        main_menu.display()
         
 
 
 
-MainMenu.start_game()
+MainMenu.Begin(1)

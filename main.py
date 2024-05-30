@@ -2,7 +2,7 @@ import random,json
 biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
-
+from inventory import Inventory
 
 
 # Define variables and lists
@@ -39,6 +39,8 @@ while True:
                 print("")
                 print("You've successfully travelled to a ", (currentbiome), "biome!")
                 print ("")
+            elif choice == ("inventory"):
+                Inventory.view_inventory()
             elif choice == ("forage"):
                 mobencounter = random.choices(mobYN,encounter_chance,k=1)
                 if mobencounter == ["Y"]:
