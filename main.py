@@ -2,7 +2,8 @@ import random,json
 biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
-
+from fight import Bosses
+from fight import Bossfight, choose_boss
 
 
 # Define variables and lists
@@ -59,16 +60,8 @@ while True:
                     print ("You have obtained a", (itemobtained),"!")
                     print ("")
             elif choice == ("fight"):
-                if difficulty == ("peaceful"):
-                    print ("")
-                    print ("Fighting has been disabled as you're on peaceful difficulty.")
-                    print ("")
-                else:
-                    from fight import Bosses 
-                    from fight import Bossfight, choose_boss
-                    chooseboss=choose_boss()
-                
-                    Bossfight(chooseboss)
+                chooseboss=choose_boss()
+                Bossfight(chooseboss, player)
             elif choice == "mine":
                 # Mining logic
                 from mine import levels

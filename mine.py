@@ -1,16 +1,12 @@
 import random
 import json
-
+from main import player, Player
 class Mobs:
     def __init__(self, name, mobhealth, mobdamage):
         self.mobhealth=mobhealth
         self.mobdamage=mobdamage
         self.name=name
-class Player:
-    def __init__(self, health, damage):
-        self.health=health
-        self.damage=damage
-player=Player(50, 10)
+
 levels = {
                     "easy": {
                         "mobs": [Mobs("Weak Zombie", 25, 10), Mobs("Weak Skeleton", 25, 10)],
