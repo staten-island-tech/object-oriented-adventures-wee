@@ -29,17 +29,3 @@ with open(new_file, "w") as f:
 os.remove("player.json")
 os.rename(new_file, "player.json")
 
-
-with open("inventory.json", "r+") as f:
-    inventory = json.load(f)
-
-class Inventory:
-    inventory = []
-    def __init__(self, inventory, playerinfo):
-        self.inventory = inventory
-        self.player_data = playerinfo
-    def view_inventory():
-        for Data in inventory:
-            print("Item name:", Data["Name"])
-            print("Item quantity:", Data["Quantity"])
-            print("Sell value:", Data["Sell value"])

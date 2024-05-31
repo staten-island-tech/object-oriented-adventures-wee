@@ -1,0 +1,14 @@
+{
+    "Slot1": {
+        "Name": "Eason Chen",
+        "Inventory": [
+            {
+                "Item": {
+                    "Name": "String",
+                    "Quantity": 2,
+                    "Sell value": 3
+                }
+            }
+        ]
+    }
+}
