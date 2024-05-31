@@ -1,5 +1,6 @@
 import random
-import json
+
+difficulty1 = "easy"
 
 class Mobs:
     def __init__(self, name, mobhealth, mobdamage):
@@ -44,13 +45,23 @@ def mine(level):
                             print("Leaving the mines.")
                             return
                         elif choice == "mine":
-                            possible_outcomes = levels[level]['mobs'] + levels[level]['ores']
-                            weights = [2] * len(levels[level]['mobs']) + [1] * len(levels[level]['ores'])
-                            random_MO = random.choices(possible_outcomes, weights=weights, k=1)[0]
-                            if random_MO in levels[level]["mobs"]:
-                                mob = random_MO
-                                print(f"A {mob.name} appeared!")
-                                while random_MO in levels[level]['mobs']:
+                            if difficulty1 == ("peaceful"):
+                                possible_outcomes = levels[level]['ores']
+                                weights = [1] * len(levels[level]['ores'])
+                                random_MO = random.choices(possible_outcomes, weights=weights, k=1)[0]
+                                if random_MO in levels[level]["ores"]:
+                                    ore = random_MO
+                                    print(f"You found {ore} ore.")
+                                else:
+                                    print("An error has occured")
+                            else:
+                                possible_outcomes = levels[level]['mobs'] + levels[level]['ores']
+                                weights = [2] * len(levels[level]['mobs']) + [1] * len(levels[level]['ores'])
+                                random_MO = random.choices(possible_outcomes, weights=weights, k=1)[0]
+                                if random_MO in levels[level]["mobs"]:
+                                    mob = random_MO
+                                    print(f"A {mob.name} appeared!")
+                                    while random_MO in levels[level]['mobs']:
                                         player.health -= mob.mobdamage
                                         print(f"The {mob.name} attacked you. Your health is now {player.health}")
                                         if player.health <= 0:
@@ -69,10 +80,10 @@ def mine(level):
                                                     break
                                         else:
                                                 print("Invalid input. Please enter 'Attack' or 'Run'.")
-                            elif random_MO in levels[level]["ores"]:
+                                elif random_MO in levels[level]["ores"]:
                                     ore = random_MO
                                     print(f"You found {ore} ore.")
-                            else:
-                                    print("Invalid choice. Please choose 'Mine' or 'Leave'.")
+                        else:
+                            print("Invalid choice. Please choose 'Mine' or 'Leave'.")
 
 
