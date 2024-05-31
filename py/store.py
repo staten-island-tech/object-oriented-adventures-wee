@@ -136,8 +136,9 @@ def main():
                     print("Item quantity:", Data["Quantity"])
                     print("Sell value:", Data["Sell value"])
                 while I == "I":
+                    Name = Data["Name"]
                     ITEM = input("What do you want to sell? Choose 1 : ")
-                    if ITEM == (Data["Name"]):
+                    if ITEM == Name:
                         print("You currently have", Data["Quantity"], Data["Name"])
                         I = "i"
                         Q = "Q"
@@ -145,24 +146,28 @@ def main():
                         ("You don't have that item")
                 while Q == "Q":
                     Quantity = int(input("How much of that item do you want to sell?: "))
-                    if Quantity <= (Data["Quantity"]): 
+                    if Quantity <= 0:
+                        print("Are you stupid?")
+                    elif Quantity > (Data["Quantity"]):
+                        print("You don't have that much items")
+                    else: 
                         New_Quantity = (Data["Quantity"]) - Quantity
                         Profit = Quantity * (Data["Sell value"])
-                        print("You are going sell", Data["Quantity"], Data["Name"])
+                        print("You are going sell", Quantity, Data["Name"])
                         s = "S"
                         Q = "q"
-                    else:
-                        print("You don't have that much items")
                 while s == "S":
                     sure = input("Are you sure you want to sell these items? Y/N ")
                     if sure.upper() == "Y":
-                        print("You have sold ", Quantity ,Data["Name"], "and earned", Profit, "ducats")
+                        print("You have sold", Quantity ,Data["Name"], "and earned", Profit, "ducats")
                         print("You now have", New_Quantity, Data["Name"])
                         """PracticeInventoryInstance.RemoveItem({ITEM: {"Description": "SKIBIDI TOIL!!!"}}) """
                         s = "s"
                         S = "s"
                     else:
+                        print("Bro wtf")
                         s = "s"
+                        S = "s"
                 
 
         elif store_option == "Exit":

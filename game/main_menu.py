@@ -1,5 +1,5 @@
 from Player import Player
-from app1 import print_slow, print_slower
+from utils import print_slow, print_slower
 from Storyline import Storyline
 class MainMenu:
     def __init__(self):

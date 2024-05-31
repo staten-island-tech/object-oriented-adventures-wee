@@ -1,4 +1,4 @@
-from app1 import print_slow, print_slower
+from game.utils import print_slow, print_slower
 class Storyline:
     def __init__(self, player):
         self.player = player
