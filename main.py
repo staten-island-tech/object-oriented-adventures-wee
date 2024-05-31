@@ -3,6 +3,7 @@ biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
 from mine import CaveMobs, choose_level, mine
+from Combat import Combat
 
 # Define variables and lists
 start_game = ""
@@ -20,7 +21,6 @@ class Player:
         self.health=health
         self.damage=damage
 player=Player(50, 10)
-
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
@@ -52,7 +52,7 @@ while True:
                         print ("You have obtained a", (itemobtained),"!")
                         print ("")
                     else:
-                        print ("insert combat system here")
+                        Combat.start()
                 elif mobencounter == ["N"]:
                     for i in biomedata1:
                         if currentbiome == (i["name"]):
@@ -69,6 +69,11 @@ while True:
                     print ("insert combat system here")
             elif choice == "mine":
                 # Mining logic
+                    print ("balls")
+            elif choice == "mine":
+                # Mining logic
+                from mine import choose_level, mine
+                difficulty1 = difficulty
                 level = choose_level()
                 mine(level)
             
@@ -82,7 +87,7 @@ while True:
 
     if start_game == "options":
         while True:
-            print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
+            print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return") 
             option = input("Choose what you want to change: ").lower()
             if option == "difficulty":
                 print("\nDifficulty Options: Peaceful | Easy | Medium | Hard")
