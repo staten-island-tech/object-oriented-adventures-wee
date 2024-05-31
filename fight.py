@@ -53,8 +53,8 @@ def Bossfight(bosschoose, player):
             boss.bosshealth -= player.damage
             print(f"You attacked, {bosschoose} seems unhappy. Its health is now {boss.bosshealth}")
             if boss.bosshealth <= 0:
-                print(f"Congratulations, you defeated the ZombieKing")
-                print(f"Since you defeated the boss you have dropoed a {random.choice(boss.drop)}")
+                print(f"Congratulations, you defeated the boss")
+                print(f"Since you defeated the boss you have dropoed a {random.choice(Bosses[bosschoose]["drop"])}")
                 break
         elif attack_run.lower() == "run":
                     print(f"You successfully ran away from the boss.")
