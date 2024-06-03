@@ -1,11 +1,15 @@
 import random
-import json
-from main import player, Player
+
 class Mobs:
     def __init__(self, name, mobhealth, mobdamage):
         self.mobhealth=mobhealth
         self.mobdamage=mobdamage
         self.name=name
+class Mober:
+    def __init__(self, moberhealth, moberdamage):
+        self.moberhealth=moberhealth
+        self.moberdamage=moberdamage
+
 
 levels = {
                     "easy": {
@@ -25,6 +29,21 @@ levels = {
                         "ores": ["lapis", "diamond", "dragon ingot"]
                     }
                 }
+mober = {
+                    "easy": {
+                        25
+                    },
+                    "medium": {
+                        40    
+                    },
+                    "hard": {
+                        80
+                    },
+                    "extreme": {
+                        150
+                    }
+                }
+
 def choose_level():
                     while True:
                         level = input("Choose a mining difficulty (Easy, Medium, Hard, Extreme): ").lower()
@@ -32,7 +51,7 @@ def choose_level():
                             return level
                         else:
                             print("Invalid difficulty. Please choose again.")
-def mine(level):
+def mine(level, player):
                     print(f"You have entered the {level} mines")
                     while True:
                         choice = input("Do you want to mine or leave? (Mine/Leave): ").lower()
@@ -45,6 +64,7 @@ def mine(level):
                             random_MO = random.choices(possible_outcomes, weights=weights, k=1)[0]
                             if random_MO in levels[level]["mobs"]:
                                 mob = random_MO
+                                
                                 print(f"A {mob.name} appeared!")
                                 while random_MO in levels[level]['mobs']:
                                         player.health -= mob.mobdamage
@@ -58,7 +78,7 @@ def mine(level):
                                             print(f"You attacked the {mob.name}. Its health is now {mob.mobhealth}")
                                             if mob.mobhealth <= 0:
                                                 print(f"Congratulations, you defeated the {mob.name}!")
-                                                mob.mobhealth=25
+                                                mob.mobhealth=mober[level]
                                                 break
                                         elif attack_run.lower() == "run":
                                                     print(f"You successfully ran away from the {mob.name}.")

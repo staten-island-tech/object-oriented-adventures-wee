@@ -42,6 +42,7 @@ def Bossfight(bosschoose, player):
     print(f"You have awakend {bosschoose}")
     print(f"{bosschoose} is awakend")
     boss=Bosses[bosschoose]["boss"]
+    bossdrops=random.choice(Bosses[bosschoose]["drop"])
     while True:
         player.health -= boss.bossdamage
         print(f"The {bosschoose} attacked you. Your health is now {player.health}")
@@ -54,7 +55,7 @@ def Bossfight(bosschoose, player):
             print(f"You attacked, {bosschoose} seems unhappy. Its health is now {boss.bosshealth}")
             if boss.bosshealth <= 0:
                 print(f"Congratulations, you defeated the boss")
-                print(f"Since you defeated the boss you have dropoed a {random.choice(Bosses[bosschoose]["drop"])}")
+                print(f"Since you defeated the boss you have dropoed a {bossdrops}")
                 break
         elif attack_run.lower() == "run":
                     print(f"You successfully ran away from the boss.")

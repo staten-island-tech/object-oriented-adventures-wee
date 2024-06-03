@@ -4,6 +4,8 @@ biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
 from fight import Bosses
 from fight import Bossfight, choose_boss
+from mine import levels
+from mine import choose_level, mine
 
 
 # Define variables and lists
@@ -25,7 +27,7 @@ class Player:
     def __init__(self, health, damage):
         self.health=health
         self.damage=damage
-player=Player(10000, 100)
+player=Player(10000, 5)
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
@@ -64,10 +66,8 @@ while True:
                 Bossfight(chooseboss, player)
             elif choice == "mine":
                 # Mining logic
-                from mine import levels
-                from mine import choose_level, mine
                 level = choose_level()
-                mine(level)
+                mine(level, player)
             elif choice == "leave game":
                 print("")
                 break
