@@ -1,8 +1,9 @@
-import random,json
+import random,json,sys
 biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
-
+from py.store import main
+from py.logo import create_minecraft_logo
 
 
 # Define variables and lists
@@ -27,11 +28,12 @@ class Player:
 player=Player(10000, 10)
 # Game loop
 while True:
+    create_minecraft_logo()
     print("\nOptions: Start | Options | Exit")
     start_game = input("What do you want to do?: ").lower()
     if start_game == "start":
-        print("\nWelcome to Minecraft (ripoff version)!")
         while True:
+            print ("")
             print("Options: Mine | Explore | Inventory | Store | Fight | Forage | Leave Game")
             choice = input("Choose what you want to do: ").lower()
             if choice == "explore":
@@ -68,11 +70,14 @@ while True:
                 
                     Bossfight(Boss)
             elif choice == "mine":
+                print ("")
                 # Mining logic
-                from mine import levels
                 from mine import choose_level, mine
                 level = choose_level()
                 mine(level)
+            elif choice == "store":
+                print ("")
+                main()
             elif choice == "leave game":
                 print("")
                 break

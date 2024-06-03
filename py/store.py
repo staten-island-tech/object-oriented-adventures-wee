@@ -148,7 +148,7 @@ def main():
                     if Quantity <= (Data["Quantity"]): 
                         New_Quantity = (Data["Quantity"]) - Quantity
                         Profit = Quantity * (Data["Sell value"])
-                        print("You are going sell", Data["Quantity"], Data["Name"])
+                        print("You are going sell", Quantity, Data["Name"])
                         s = "S"
                         Q = "q"
                     else:
@@ -170,9 +170,6 @@ def main():
             break
         else:
             print("Invalid option. Please choose Buy, Sell, or Exit.")
-
-main()
-
 
 
 new_file = "updated.json"
