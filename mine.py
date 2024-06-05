@@ -31,16 +31,16 @@ levels = {
                 }
 mober = {
                     "easy": {
-                        25
+                        "healther":[25]
                     },
                     "medium": {
-                        40    
+                        "healther":[40]    
                     },
                     "hard": {
-                        80
+                        "healther":[80]
                     },
                     "extreme": {
-                        150
+                        "healther":[150]
                     }
                 }
 
@@ -78,7 +78,14 @@ def mine(level, player):
                                             print(f"You attacked the {mob.name}. Its health is now {mob.mobhealth}")
                                             if mob.mobhealth <= 0:
                                                 print(f"Congratulations, you defeated the {mob.name}!")
-                                                mob.mobhealth=mober[level]
+                                                if level=="easy":
+                                                    mob.mobhealth=25
+                                                elif level=="medium":
+                                                    mob.mobhealth=40
+                                                if level=="hard":
+                                                    mob.mobhealth=80
+                                                elif level=="extreme":
+                                                    mob.mobhealth=150
                                                 break
                                         elif attack_run.lower() == "run":
                                                     print(f"You successfully ran away from the {mob.name}.")
