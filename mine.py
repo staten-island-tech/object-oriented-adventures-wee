@@ -59,7 +59,7 @@ def mine(level):
                                     print(f"The {mob.name} attacked you. Your health is now 0.")
                                     print("You were defeated by the mob!")
                                     print("")
-                                    print("GAME OVER! you fucking loser")
+                                    print("GAME OVER! you loser")
                                     sys.exit()
                                 while random_MO in levels[level]['mobs']:
                                         attack_run = input("What would you like to do? (Attack/Run/Check): ")

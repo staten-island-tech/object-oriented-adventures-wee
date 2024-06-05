@@ -1,4 +1,4 @@
-import random,json,sys
+import random,json
 biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
@@ -15,7 +15,11 @@ currentbiome = ["Plains"]
 difficulty = ["normal"]
 difficulty1 = ["normal"]
 cheats = ["off"]
-
+class Items():
+    def __init__(self, name, quantity, sell):
+        self.name = name
+        self.quantity = quantity
+        self.sell = sell
 class Mobs:
     def __init__(self, name, mobhealth, mobdamage):
         self.mobhealth=mobhealth
@@ -26,6 +30,11 @@ class Player:
         self.health=health
         self.damage=damage
 player=Player(10000, 10)
+with open("inventory.json",'r+') as file:
+    data = json.load(file)
+with open("forageitemsellvalue.json",'r+') as file2:
+    data2 = json.load(file2)
+
 # Game loop
 while True:
     create_minecraft_logo()
@@ -42,24 +51,19 @@ while True:
                 print("You've successfully travelled to a ", (currentbiome), "biome!")
                 print ("")
             elif choice == ("forage"):
-                mobencounter = random.choices(mobYN,encounter_chance,k=1)
-                if mobencounter == ["Y"]:
-                    if difficulty == ("peaceful"):
-                        for i in biomedata1:
-                            if currentbiome == (i["name"]):
-                                itemobtained = random.choices(i["loot"],i["chances"],k=1)
-                        print ("")
-                        print ("You have obtained a", (itemobtained),"!")
-                        print ("")
-                    else:
-                        print ("insert combat system here")
-                elif mobencounter == ["N"]:
-                    for i in biomedata1:
-                        if currentbiome == (i["name"]):
-                            itemobtained = random.choices(i["loot"],i["chances"],k=1)
-                    print ("")
-                    print ("You have obtained a", (itemobtained),"!")
-                    print ("")
+                for i in biomedata1:
+                    if currentbiome == (i["name"]):
+                        itemobtained = random.choices(i["loot"],i["chances"],k=1)
+                print ("")
+                print ("You have obtained a", (itemobtained),"!")
+                name = (itemobtained)
+                quantity = 1
+                for i in data2:
+                    if itemobtained in [i("name")]:
+                        sell = (i["sellvalue"])
+                items = Items(name,quantity,sell)
+                data.append(items.__dict__)
+                print ("")
             elif choice == ("fight"):
                 if difficulty == ("peaceful"):
                     print ("")
