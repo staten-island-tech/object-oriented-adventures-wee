@@ -1,0 +1,18 @@
+[
+    {
+        "name": "['Dirt']",
+        "sellvalue": 1
+    },
+    {
+        "name": "['Oak Log']",
+        "sellvalue": 3
+    },
+    {
+        "name": "['Oak Leaves']",
+        "sellvalue": 1
+    },
+    {
+        "name": "['Flower']",
+        "sellvalue": 2
+    }
+]
