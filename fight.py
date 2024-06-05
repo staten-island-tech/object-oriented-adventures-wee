@@ -22,12 +22,23 @@ Bosses = {
     "GOLEM": {
         "drop":["Golem Sword", "Golem Bow", "Golem Greatsword", "Golem Dagger"],
         "boss":Boss(500, 70)
+    },
+    "GIANT SERPANT": {
+        "drop":["Serpant Sword", "Serpant Bow", "Serpant Greatsword", "Serpant Dagger"],
+        "boss":Boss(790, 170)
+    },
+    "DRAGON": {
+        "drop":["Dragon Sword", "Dragon Bow", "Dragon Greatsword", "Dragon Dagger"],
+        "boss":Boss(1600, 380)
+    },
+    "DRAGON": {
+        "drop":["God Sword", "God Bow", "God Greatsword", "God Dagger"],
+        "boss":Boss(4000, 700)
     }
-
 }
 def choose_boss():
                     while True:
-                        bosschoose = input("Choose a Boss to fight (Zombie King, Golem, Lizard Demon, Dragon, God): ").upper()
+                        bosschoose = input("Choose a Boss to fight (Zombie King, Golem, Giant Serpant, Dragon, God): ").upper()
                         if bosschoose in Bosses:
                             return bosschoose
                         elif bosschoose in Bosses:
@@ -55,6 +66,16 @@ def Bossfight(bosschoose, player):
             print(f"You attacked, {bosschoose} seems unhappy. Its health is now {boss.bosshealth}")
             if boss.bosshealth <= 0:
                 print(f"Congratulations, you defeated the boss")
+                if bosschoose=="ZOMBIE KING":
+                      boss.bosshealth=200
+                if bosschoose=="GOLEM":
+                      boss.bosshealth=500
+                if bosschoose=="GIANT SERPANT":
+                      boss.bosshealth=200
+                if bosschoose=="DRAGON":
+                      boss.bosshealth=200
+                if bosschoose=="GOD":
+                      boss.bosshealth=200
                 print(f"Since you defeated the boss you have dropoed a {bossdrops}")
                 break
         elif attack_run.lower() == "run":
