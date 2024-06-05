@@ -71,11 +71,11 @@ def Bossfight(bosschoose, player):
                 if bosschoose=="GOLEM":
                       boss.bosshealth=500
                 if bosschoose=="GIANT SERPANT":
-                      boss.bosshealth=200
+                      boss.bosshealth=790
                 if bosschoose=="DRAGON":
-                      boss.bosshealth=200
+                      boss.bosshealth=1600
                 if bosschoose=="GOD":
-                      boss.bosshealth=200
+                      boss.bosshealth=4000
                 print(f"Since you defeated the boss you have dropoed a {bossdrops}")
                 break
         elif attack_run.lower() == "run":
