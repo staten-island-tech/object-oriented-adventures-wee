@@ -2,6 +2,14 @@ import json, os
 """ from inventory import  PracticeInventoryInstance """
 
 class Item:
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+
+    def __str__(self):
+        return f"{self.name}: {self.description} (Value: {self.value})"
+
+class Equipment:
     def __init__(self, name, price):
         self.name = name
         self.price = price
@@ -10,7 +18,7 @@ class Item:
         print("Name:", self.name)
         print("Price:", self.price)
 
-class Sword(Item):
+class Sword(Equipment):
     def __init__(self, name, price, damage, crit_percent):
         super().__init__(name, price)
         self.name = name
@@ -29,7 +37,7 @@ class Sword(Item):
             "Crit percent": self.crit_percent
         }
 
-class Pickaxe(Item):
+class Pickaxe(Equipment):
     def __init__(self, name, price, mining_power):
         super().__init__(name, price)
         self.mining_power = mining_power
@@ -43,7 +51,7 @@ class Pickaxe(Item):
             "Mining power": self.mining_power
         }
 
-class Armor(Item):
+class Armor(Equipment):
     def __init__(self, name, price, health_boost):
         super().__init__(name, price)
         self.health_boost = health_boost
@@ -55,7 +63,6 @@ class Armor(Item):
             "Name": self.name,
             "Price": self.price,
             "Health boost": self.health_boost
-            
         }
 
 
@@ -85,17 +92,33 @@ class Store:
                 sure = input("Are you sure you want to buy this? (Y/N): ")
                 if sure.upper() == "Y":
                     print("You have purchased a", item.name)
+                    info = Equipment(item)
+                    player.append(info.to_dict())
                     return item
                 else:
                     return None
         print("Item not found in the store.")
+    def sell_item(self, item_name):
+        for item in self.items:
+            if item.name.lower() == item_name.lower():
+                item.display_info()
+                sure = input("Are you sure you want to sell this? (Y/N): ")
+                if sure.upper() == "Y":
+                    print("You have sold ", item.name)
+                    return item
+                else:
+                    return None
+        print("Item not found in inventory.")
+        return None
     
 
 with open("inventory.json", "r") as f:
     inventory = json.load(f)
 with open("player_inventory.json", "r") as f:
     player = json.load(f)
-def main():
+
+# CREATE openstore(PLAYER OBJ) 
+def enter_store():
     store = Store()
     while True:
         store_option = input("What do you want to do? (Buy | Sell | Exit): ")
@@ -109,7 +132,6 @@ def main():
                 item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
                 item = store.buy_item(item_name)
                 item
-                inventory.append(item.to_dict())
             elif item_type == "Armor":
                 item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Leather, Chainmail, Iron, Diamond, Netherite, God): ")
                 item = store.buy_item(item_name)
@@ -117,25 +139,28 @@ def main():
             else:
                 print("Invalid item type.")
 
-        elif store_option.lower() == "sell":
-            S = "S"
-            while S == "S":
+        elif store_option == "Sell":
+            E = "E"
+            while E == "E":
                 I = "I"
                 for Data in inventory:
                     print("Item name:", Data["Name"]) 
                     print("Item quantity:", Data["Quantity"])
                     print("Sell value:", Data["Sell value"])
-                    
                 while I == "I":
                     ITEM = input("What do you want to sell? Choose 1 : ")
                     if ITEM == Data["Name"]:
                         print("You currently have", Data["Quantity"], Data["Name"])
-                        I = "i"
+                        I = "A"
                         Q = "Q"
                     else:
                         print("You don't have that item")
                 while Q == "Q":
-                    Quantity = input("How much of that item do you want to sell?: ")
+                    Quantity = int(input("How much of that item do you want to sell?: "))
+                    if Quantity <= 0:
+                        print("Are you stupid?")
+                    elif Quantity > (Data["Quantity"]):
+                        Quantity = input("How much of that item do you want to sell?: ")
                     if int(Quantity) <= 0:
                         print("Are you good?")
                     elif int(Quantity) > (Data["Quantity"]):
@@ -148,19 +173,16 @@ def main():
                         Q = "q"
                     else:
                         print("That's not a number")
-                while s == "S":
-                    sure = input("Are you sure you want to sell these items? Y/N ")
+                while S == "S":
+                    sure = input("Are you sure you want to sell", Data["Quantity"], Data["Name"])
                     if sure.upper() == "Y":
-                        print("You have sold", Quantity ,Data["Name"], "and earned", Profit, "ducats")
+                        print("You have sold ", Quantity ,Data["Name"], "and earned", Profit, "ducats")
                         print("You now have", New_Quantity, Data["Name"])
-                        inventory.append(.to_dict())
-                        """PracticeInventoryInstance.RemoveItem({ITEM: {"Description": "SKIBIDI TOIL!!!"}}) """
-                        s = "s"
+                        
                         S = "s"
+                        E = "e"
                     else:
-                        print("Bro wtf")
-                        s = "s"
-                        S = "s"
+                        E = "E"
                 
 
         elif store_option == "Exit":
@@ -169,7 +191,7 @@ def main():
         else:
             print("Invalid option. Please choose Buy, Sell, or Exit.")
 
-main()
+enter_store()
 
 
 

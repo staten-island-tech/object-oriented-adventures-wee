@@ -40,7 +40,7 @@ while True:
                 print("You've successfully travelled to a ", (currentbiome), "biome!")
                 print ("")
             elif choice == ("inventory"):
-                Inventory.view_inventory()
+                Inventory.view_inventory(1)
             elif choice == ("forage"):
                 mobencounter = random.choices(mobYN,encounter_chance,k=1)
                 if mobencounter == ["Y"]:

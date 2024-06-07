@@ -16,9 +16,6 @@ class Storyline:
             print("")
         elif self.player.role == "Archer":
             print("")
-            print_slow("You are a child of a prestigious and skilled marksman from a noble family")
-            print("")
-            print_slow("You've always dreamt of exploring the world, and now that you're an adult")
 
         elif self.player.role == "Assassin":
             print("")
