@@ -55,6 +55,7 @@ class Armor(Item):
             "Name": self.name,
             "Price": self.price,
             "Health boost": self.health_boost
+            
         }
 
 
@@ -84,24 +85,10 @@ class Store:
                 sure = input("Are you sure you want to buy this? (Y/N): ")
                 if sure.upper() == "Y":
                     print("You have purchased a", item.name)
-                    info = Sword(item)
-                    player.append(info.to_dict())
                     return item
                 else:
                     return None
         print("Item not found in the store.")
-    def sell_item(self, item_name):
-        for item in self.items:
-            if item.name.lower() == item_name.lower():
-                item.display_info()
-                sure = input("Are you sure you want to sell this? (Y/N): ")
-                if sure.upper() == "Y":
-                    print("You have sold ", item.name)
-                    return item
-                else:
-                    return None
-        print("Item not found in inventory.")
-        return None
     
 
 with open("inventory.json", "r") as f:
@@ -122,6 +109,7 @@ def main():
                 item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
                 item = store.buy_item(item_name)
                 item
+                inventory.append(item.to_dict())
             elif item_type == "Armor":
                 item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Leather, Chainmail, Iron, Diamond, Netherite, God): ")
                 item = store.buy_item(item_name)
@@ -129,41 +117,50 @@ def main():
             else:
                 print("Invalid item type.")
 
-        elif store_option == "Sell":
-            E = "E"
-            while E == "E":
+        elif store_option.lower() == "sell":
+            S = "S"
+            while S == "S":
                 I = "I"
                 for Data in inventory:
                     print("Item name:", Data["Name"]) 
                     print("Item quantity:", Data["Quantity"])
                     print("Sell value:", Data["Sell value"])
+                    
                 while I == "I":
                     ITEM = input("What do you want to sell? Choose 1 : ")
                     if ITEM == Data["Name"]:
                         print("You currently have", Data["Quantity"], Data["Name"])
-                        I = "A"
+                        I = "i"
                         Q = "Q"
                     else:
                         print("You don't have that item")
                 while Q == "Q":
-                    Quantity = int(input("How much of that item do you want to sell?: "))
-                    if Quantity <= (Data["Quantity"]):
-                        New_Quantity = (Data["Quantity"]) - Quantity
-                        Profit = Quantity * (Data["Sell value"])
-                        print("You are going sell", Data["Quantity"], Data["Name"])
-                        S = "S"
+                    Quantity = input("How much of that item do you want to sell?: ")
+                    if int(Quantity) <= 0:
+                        print("Are you good?")
+                    elif int(Quantity) > (Data["Quantity"]):
+                        print("You don't have that much items")
+                    elif 0 < int(Quantity) <= (Data["Quantity"]): 
+                        New_Quantity = (Data["Quantity"]) - int(Quantity)
+                        Profit = int(Quantity) * (Data["Sell value"])
+                        print("You are going sell", int(Quantity), Data["Name"])
+                        s = "S"
                         Q = "q"
                     else:
-                        print("You don't have that much items")
-                while S == "S":
-                    sure = input("Are you sure you want to sell", Data["Quantity"], Data["Name"])
+                        print("That's not a number")
+                while s == "S":
+                    sure = input("Are you sure you want to sell these items? Y/N ")
                     if sure.upper() == "Y":
-                        print("You have sold ", Quantity ,Data["Name"], "and earned", Profit, "ducats")
+                        print("You have sold", Quantity ,Data["Name"], "and earned", Profit, "ducats")
                         print("You now have", New_Quantity, Data["Name"])
+                        inventory.append(.to_dict())
                         """PracticeInventoryInstance.RemoveItem({ITEM: {"Description": "SKIBIDI TOIL!!!"}}) """
+                        s = "s"
                         S = "s"
                     else:
-                        E = "E"
+                        print("Bro wtf")
+                        s = "s"
+                        S = "s"
                 
 
         elif store_option == "Exit":

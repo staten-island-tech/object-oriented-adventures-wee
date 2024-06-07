@@ -1,4 +1,4 @@
-class ItemInventory:
+""" class ItemInventory:
     def __init__(self, name='', count=0, cost=0.0, category='')
         self.name = name
         self.count = count
@@ -10,7 +10,7 @@ class ItemInventory:
         self.count = int(input('Enter item count: '))
         self.cost = float(input('Enter unit cost: '))
         self.category = input('Enter category: ')
-
+"""  """
     def __str__(self):
         return f"{self.name}\n"
                f"\tCount: {self.count}, Cost: {self.cost}\n"
@@ -67,4 +67,4 @@ def display_inventory(inventory):
 main()
 
 
-"https://www.reddit.com/r/learnpython/comments/17lhaj7/first_time_working_with_classes_how_do_i_append/?rdt=50242"
+"https://www.reddit.com/r/learnpython/comments/17lhaj7/first_time_working_with_classes_how_do_i_append/?rdt=50242" """
