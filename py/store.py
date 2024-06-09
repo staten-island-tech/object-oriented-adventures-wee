@@ -2,14 +2,6 @@ import json, os
 """ from inventory import  PracticeInventoryInstance """
 
 class Item:
-    def __init__(self, name, value):
-        self.name = name
-        self.value = value
-
-    def __str__(self):
-        return f"{self.name}: {self.description} (Value: {self.value})"
-
-class Equipment:
     def __init__(self, name, price):
         self.name = name
         self.price = price
@@ -18,7 +10,7 @@ class Equipment:
         print("Name:", self.name)
         print("Price:", self.price)
 
-class Sword(Equipment):
+class Sword(Item):
     def __init__(self, name, price, damage, crit_percent):
         super().__init__(name, price)
         self.name = name
@@ -37,7 +29,7 @@ class Sword(Equipment):
             "Crit percent": self.crit_percent
         }
 
-class Pickaxe(Equipment):
+class Pickaxe(Item):
     def __init__(self, name, price, mining_power):
         super().__init__(name, price)
         self.mining_power = mining_power
@@ -51,7 +43,7 @@ class Pickaxe(Equipment):
             "Mining power": self.mining_power
         }
 
-class Armor(Equipment):
+class Armor(Item):
     def __init__(self, name, price, health_boost):
         super().__init__(name, price)
         self.health_boost = health_boost
@@ -92,7 +84,7 @@ class Store:
                 sure = input("Are you sure you want to buy this? (Y/N): ")
                 if sure.upper() == "Y":
                     print("You have purchased a", item.name)
-                    info = Equipment(item)
+                    info = Sword(item)
                     player.append(info.to_dict())
                     return item
                 else:
@@ -116,9 +108,7 @@ with open("inventory.json", "r") as f:
     inventory = json.load(f)
 with open("player_inventory.json", "r") as f:
     player = json.load(f)
-
-# CREATE openstore(PLAYER OBJ) 
-def enter_store():
+def main():
     store = Store()
     while True:
         store_option = input("What do you want to do? (Buy | Sell | Exit): ")
@@ -157,30 +147,21 @@ def enter_store():
                         print("You don't have that item")
                 while Q == "Q":
                     Quantity = int(input("How much of that item do you want to sell?: "))
-                    if Quantity <= 0:
-                        print("Are you stupid?")
-                    elif Quantity > (Data["Quantity"]):
-                        Quantity = input("How much of that item do you want to sell?: ")
-                    if int(Quantity) <= 0:
-                        print("Are you good?")
-                    elif int(Quantity) > (Data["Quantity"]):
-                        print("You don't have that much items")
-                    elif 0 < int(Quantity) <= (Data["Quantity"]): 
-                        New_Quantity = (Data["Quantity"]) - int(Quantity)
-                        Profit = int(Quantity) * (Data["Sell value"])
-                        print("You are going sell", int(Quantity), Data["Name"])
-                        s = "S"
+                    if Quantity <= (Data["Quantity"]):
+                        New_Quantity = (Data["Quantity"]) - Quantity
+                        Profit = Quantity * (Data["Sell value"])
+                        print("You are going sell", Data["Quantity"], Data["Name"])
+                        S = "S"
                         Q = "q"
                     else:
-                        print("That's not a number")
+                        print("You don't have that much items")
                 while S == "S":
                     sure = input("Are you sure you want to sell", Data["Quantity"], Data["Name"])
                     if sure.upper() == "Y":
                         print("You have sold ", Quantity ,Data["Name"], "and earned", Profit, "ducats")
                         print("You now have", New_Quantity, Data["Name"])
-                        
+                        """PracticeInventoryInstance.RemoveItem({ITEM: {"Description": "SKIBIDI TOIL!!!"}}) """
                         S = "s"
-                        E = "e"
                     else:
                         E = "E"
                 
@@ -191,7 +172,7 @@ def enter_store():
         else:
             print("Invalid option. Please choose Buy, Sell, or Exit.")
 
-enter_store()
+main()
 
 
 
