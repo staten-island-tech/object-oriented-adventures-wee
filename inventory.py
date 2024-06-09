@@ -1,21 +1,27 @@
-import json
-
-with open("inventory.json", "r+") as f:
-    inventory = json.load(f)
-
 class Inventory:
     inventory = []
-    def __init__(self, inventory, playerinfo):
-        self.inventory = inventory
-        with open("inventory.json", "r") as f:
-            inventory = json.load(f)
-            self.inventory = self.items(inventory)
-        self.player_data = playerinfo
-    def view_inventory():
-        for Data in inventory:
-            print("Item name:", Data["Name"])
-            print("Item quantity:", Data["Quantity"])
-            print("Sell value:", Data["Sell value"])
+    def __init__(self):
+        self.inventory = {}
+    def update_inventory(self,item,quantity ):
+        self.inventory[item] += quantity
+    def add_item(self,item):
+        self.items.append(item)
+    def remove_item(self, item):
+        if item in self.items:
+            self.items.remove(item)
+    def view_inventory(self):
+        print("\nYour Inventory:")
+        for item in self.items:
+            print(item)
+        print(f"Money: {self.money}")
+    def add_money(self, amount):
+        self.money += amount
+
+    def spend_money(self, amount):
+        if self.money >= amount:
+            self.money -= amount
+        else:
+            print("Not enough money!")
 
 """ class InventoryInstance:
     def __init__(self, data, SlotName) -> None:
