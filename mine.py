@@ -72,8 +72,8 @@ def mine(level, player):
                                         if player.health <= 0:
                                             print("You were defeated by the mob!")
                                             return
-                                        attack_run = input("What would you like to do? (Attack/Run): ")
-                                        if attack_run.lower() == "attack":
+                                        attack_run = input("What would you like to do? (Attack(A)/Run(R)) : ")
+                                        if attack_run.lower() == "a":
                                             mob.mobhealth -= player.damage
                                             print(f"You attacked the {mob.name}. Its health is now {mob.mobhealth}")
                                             if mob.mobhealth <= 0:
@@ -87,15 +87,17 @@ def mine(level, player):
                                                 elif level=="extreme":
                                                     mob.mobhealth=150
                                                 break
-                                        elif attack_run.lower() == "run":
+                                        elif attack_run.lower() == "r":
                                                     print(f"You successfully ran away from the {mob.name}.")
                                                     break
                                         else:
-                                                print("Invalid input. Please enter 'Attack' or 'Run'.")
+                                                print("Invalid input (Your punished). Please enter 'Attack' or 'Run'.")
+                                                
+
                             elif random_MO in levels[level]["ores"]:
                                     ore = random_MO
                                     print(f"You found {ore} ore.")
                             else:
-                                    print("Invalid choice. Please choose 'Mine' or 'Leave'.")
+                                print("Invalid choice. Please choose 'Mine' or 'Leave'.")
 
 

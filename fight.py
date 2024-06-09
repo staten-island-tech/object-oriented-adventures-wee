@@ -31,7 +31,7 @@ Bosses = {
         "drop":["Dragon Sword", "Dragon Bow", "Dragon Greatsword", "Dragon Dagger"],
         "boss":Boss(1600, 380)
     },
-    "DRAGON": {
+    "GOD": {
         "drop":["God Sword", "God Bow", "God Greatsword", "God Dagger"],
         "boss":Boss(4000, 700)
     }
