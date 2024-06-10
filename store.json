@@ -1,81 +1,104 @@
-[
-    { 
-        "Name" : "Wooden sword",
-        "Price" : 10,
-        "Damage" : 5,
-        "Crit percent" : 5
-    },{ 
-        "Name" : "Stone sword",
-        "Price" : 15,
-        "Damage" : 10,
-        "Crit percent" : 10
-    },{ 
-        "Name" : "Iron sword",
-        "Price" : 20,
-        "Damage" : 15,
-        "Crit percent" : 15
-    },{ 
-        "Name" : "Diamond sword",
-        "Price" : 25,
-        "Damage" : 20,
-        "Crit percent" : 20
-    },{ 
-        "Name" : "Netherite sword",
-        "Price" : 30,
-        "Damage" : 25,
-        "Crit percent" : 25
-    },{ 
-        "Name" : "God sword",
-        "Price" : 100,
-        "Damage" : 100,
-        "Crit percent" : 100
-    },{ 
-        "Name" : "Wooden Pickaxe",
-        "Price" : 10,
-        "Mining Power" : 5
-    },{ 
-        "Name" : "Stone Pickaxe",
-        "Price" : 15,
-        "Mining Power" : 10
-    },{ 
-        "Name" : "Iron Pickaxe",
-        "Price" : 20,
-        "Mining Power" : 15
-    },{ 
-        "Name" : "Diamond Pickaxe",
-        "Price" : 25,
-        "Mining Power" : 20
-    },{ 
-        "Name" : "Netherite Pickaxe",
-        "Price" : 30,
-        "Mining Power" : 25
-    },{ 
-        "Name" : "God Pickaxe",
-        "Price" : 1000,
-        "Mining Power" : 1000
-    },{
-        "Name" : "Leather armor",
-        "Price" : 25,
-        "Health_Boost" : 20
-    },{
-        "Name" : "Chainmail armor",
-        "Price" : 50,
-        "Health_Boost" : 50
-    },{
-        "Name" : "Iron armor",
-        "Price" : 75,
-        "Health_Boost" : 100
-    },{
-        "Name" : "Diamond armor",
-        "Price" : 100,
-        "Health_Boost" : 150
-    },{
-        "Name" : "Netherite armor",
-        "Price" : 200,
-        "Health_Boost" : 300
-    },{
-        "Name" : "God armor",
-        "Price" : 1000,
-        "Health_Boost" : 1000
+{
+    "sword" : {
+        "wood" : { 
+            "Name" : "Wooden sword",
+            "Price" : 50,
+            "Damage" : 20,
+            "Crit percent" : 5
+        },
+        "stone" : { 
+            "Name" : "Stone sword",
+            "Price" : 100,
+            "Damage" : 30,
+            "Crit percent" : 10
+        },
+        "iron" : { 
+            "Name" : "Iron sword",
+            "Price" : 150,
+            "Damage" : 45,
+            "Crit percent" : 15
+        },
+        "diamond" : { 
+            "Name" : "Diamond sword",
+            "Price" : 200,
+            "Damage" : 50,
+            "Crit percent" : 20
+        },
+        "netherite" : { 
+            "Name" : "Netherite sword",
+            "Price" : 250,
+            "Damage" : 65,
+            "Crit percent" : 25 
+        },
+        "god" : { 
+            "Name" : "God sword",
+            "Price" : 1000,
+            "Damage" : 100,
+            "Crit percent" : 100
+        }
+    },
+    "pickaxe" : {
+        "wood" : { 
+            "Name" : "Wooden Pickaxe",
+            "Price" : 10,
+            "Mining Power" : 5
+        },
+        "stone" : { 
+            "Name" : "Stone Pickaxe",
+            "Price" : 15,
+            "Mining Power" : 10
+        },
+        "iron" : { 
+            "Name" : "Iron Pickaxe",
+            "Price" : 20,
+            "Mining Power" : 15
+        },
+        "diamond" : { 
+            "Name" : "Diamond Pickaxe",
+            "Price" : 25,
+            "Mining Power" : 20
+        },
+        "netherite" : { 
+            "Name" : "Netherite Pickaxe",
+            "Price" : 30,
+            "Mining Power" : 25
+        },
+        "god" : { 
+            "Name" : "God Pickaxe",
+            "Price" : 1000,
+            "Mining Power" : 1000
+        }
+    },
+    "armor" : {
+        "leather" : {
+            "Name" : "Leather armor",
+            "Price" : 50,
+            "Health_Boost" : 30
+        },
+        "chainmail" : {
+            "Name" : "Chainmail armor",
+            "Price" : 100,
+            "Health_Boost" : 70
+        },
+        "iron" : {
+            "Name" : "Iron armor",
+            "Price" : 150,
+            "Health_Boost" : 100
+        },
+        "diamond" : {
+            "Name" : "Diamond armor",
+            "Price" : 200,
+            "Health_Boost" : 150
+        },
+        "netherite" : {
+            "Name" : "Netherite armor",
+            "Price" : 250,
+            "Health_Boost" : 200
+        },
+        "god" : {
+            "Name" : "God armor",
+            "Price" : 1000,
+            "Health_Boost" : 1000
+        }
     }
-    ]
+}
