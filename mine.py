@@ -1,4 +1,6 @@
 import random
+from inventory import Inventory
+
 
 class Mobs:
     def __init__(self, name, mobhealth, mobdamage):
@@ -52,6 +54,7 @@ def choose_level():
                         else:
                             print("Invalid difficulty. Please choose again.")
 def mine(level, player):
+                    Inventoryinstance=Inventory()
                     print(f"You have entered the {level} mines")
                     while True:
                         choice = input("Do you want to mine or leave? (Mine/Leave): ").lower()
@@ -78,14 +81,23 @@ def mine(level, player):
                                             print(f"You attacked the {mob.name}. Its health is now {mob.mobhealth}")
                                             if mob.mobhealth <= 0:
                                                 print(f"Congratulations, you defeated the {mob.name}!")
+                                                
                                                 if level=="easy":
                                                     mob.mobhealth=25
+                                                    Inventoryinstance.add_money(10)
+                                                    print(Inventoryinstance.money)
                                                 elif level=="medium":
                                                     mob.mobhealth=40
-                                                if level=="hard":
+                                                    Inventoryinstance.add_money(20)
+                                                    print(Inventoryinstance.money)
+                                                elif level=="hard":
                                                     mob.mobhealth=80
+                                                    Inventoryinstance.add_money(40)
+                                                    print(Inventoryinstance.money)
                                                 elif level=="extreme":
                                                     mob.mobhealth=150
+                                                    Inventoryinstance.add_money(80)
+                                                    print(Inventoryinstance.money)
                                                 break
                                         elif attack_run.lower() == "r":
                                                     print(f"You successfully ran away from the {mob.name}.")
@@ -97,6 +109,7 @@ def mine(level, player):
                             elif random_MO in levels[level]["ores"]:
                                     ore = random_MO
                                     print(f"You found {ore} ore.")
+                                    Inventoryinstance.add_item(ore)
                             else:
                                 print("Invalid choice. Please choose 'Mine' or 'Leave'.")
 

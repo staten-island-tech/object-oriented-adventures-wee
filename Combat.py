@@ -24,4 +24,3 @@ class Combat:
             if self.player.health <= 0:
                 print("You are defeated!")
 
-Combat.start()

@@ -1,21 +1,24 @@
 class Inventory:
-    inventory = []
+
     def __init__(self):
-        self.inventory = {}
-    def update_inventory(self,item,quantity ):
-        self.inventory[item] += quantity
+        self.items = []
+        self.money = 0
+
     def add_item(self,item):
         self.items.append(item)
+
     def remove_item(self, item):
-        if item in self.items:
-            self.items.remove(item)
+        self.items.remove(item)
+
     def view_inventory(self):
         print("\nYour Inventory:")
         for item in self.items:
             print(item)
         print(f"Money: {self.money}")
-    def add_money(self, amount):
+
+    def add_money(self,amount):
         self.money += amount
+        print(self.money)
 
     def spend_money(self, amount):
         if self.money >= amount:

@@ -6,8 +6,9 @@ from fight import Bosses
 from fight import Bossfight, choose_boss
 from mine import levels
 from mine import choose_level, mine
-from inventory import inventory 
-
+from inventory import Inventory
+Inventoryinstance=Inventory()
+                
 # Define variables and lists
 start_game = ""
 choice = "off"
@@ -51,6 +52,7 @@ while True:
                                 itemobtained = random.choices(i["loot"],i["chances"],k=1)
                         print ("")
                         print ("You have obtained a", (itemobtained),"!")
+                        Inventoryinstance.add_item(itemobtained)
                         print ("")
                     else:
                         print ("insert combat system here")
@@ -60,10 +62,14 @@ while True:
                             itemobtained = random.choices(i["loot"],i["chances"],k=1)
                     print ("")
                     print ("You have obtained a", (itemobtained),"!")
+                    Inventoryinstance.add_item(itemobtained)
                     print ("")
             elif choice == ("fight"):
                 chooseboss=choose_boss()
                 Bossfight(chooseboss, player)
+            elif choice == ("inventory"):
+                
+                Inventoryinstance.view_inventory()
             elif choice == "mine":
                 # Mining logic
                 level = choose_level()
