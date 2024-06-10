@@ -1,5 +1,5 @@
 import json, os
-from inventory import Inventory, Inventoryinstance
+from inventory import Inventory
 """ from inventory import  PracticeInventoryInstance """
 
 with open("store.json", "r") as file:
@@ -76,8 +76,10 @@ class Armor(Equipment):
 
 
 class Store:
-    def __init__(self):
+    def __init__(self, Inventory, player):
         z = 0
+        self.Inventory = Inventory
+        self.player = player
 
     def parse_items(self, data):
         items = []
@@ -104,8 +106,15 @@ class Store:
         if sure:
             if sure.upper() == "Y":
                 #if player.
-                print("You have purchased a", item.name)
-                Inventoryinstance.add_item(item.name)
+                if self.Inventory.money < item_data["Price"]:
+                    print("broke ahh")
+                else:
+                    print("You have purchased a", item.name)
+                    self.Inventory.add_item(item.name)
+                    self.Inventory.money -= item_data["Price"]
+                    self.player.damage += item_data.get("Damage", 0)
+
+                    
                 return item
             else:
                 return None
@@ -125,8 +134,8 @@ class Store:
     
 
 # CREATE openstore(PLAYER OBJ) 
-def enter_store():
-    store = Store()
+def enter_store(Inventory, player):
+    store = Store(Inventory=Inventory, player=player)
     while True:
         store_option = input("What do you want to do? (Buy | Sell | Exit): ")
         if store_option.lower() == "buy":
@@ -198,17 +207,8 @@ def enter_store():
                         E = "E"
                 
 
-        elif store_option == "Exit":
+        elif store_option.lower() == "exit":
             print("Goodbye!")
             break
         else:
             print("Invalid option. Please choose Buy, Sell, or Exit.")
-
-    new_file = "updated.json"
-    with open(new_file, "w") as f:
-        json_string = json.dumps(player)
-        f.write(json_string)
-
-
-    os.remove("player_inventory.json")
-    os.rename(new_file, "player_inventory.json")

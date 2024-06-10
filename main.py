@@ -1,4 +1,4 @@
-import random,json
+import random, json
 biomedata = open("./biome.json", encoding="utf8")
 biomedata1 = json.load(biomedata)
 from biome import biomes,biomeweights
@@ -29,7 +29,7 @@ class Player:
     def __init__(self, health, damage):
         self.health=health
         self.damage=damage
-player=Player(10000, 50)
+player=Player(150, 20)
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
@@ -44,32 +44,20 @@ while True:
                 print("")
                 print("You've successfully travelled to a ", (currentbiome), "biome!")
                 print ("")
+            elif choice == ("annex all"):
+                Inventoryinstance.add_money(9999999999999999999)
             elif choice == ("forage"):
-                mobencounter = random.choices(mobYN,encounter_chance,k=1)
-                if mobencounter == ["Y"]:
-                    if difficulty == ("peaceful"):
-                        for i in biomedata1:
-                            if currentbiome == (i["name"]):
-                                itemobtained = random.choices(i["loot"],i["chances"],k=1)
-                        print ("")
-                        print ("You have obtained a", (itemobtained),"!")
-                        Inventoryinstance.add_item(itemobtained)
-                        print ("")
-                    else:
-                        print ("insert combat system here")
-                elif mobencounter == ["N"]:
-                    for i in biomedata1:
-                        if currentbiome == (i["name"]):
-                            itemobtained = random.choices(i["loot"],i["chances"],k=1)
-                    print ("")
-                    print ("You have obtained a", (itemobtained),"!")
-                    Inventoryinstance.add_item(itemobtained)
-                    print ("")
+                for i in biomedata1:
+                    if currentbiome == (i["name"]):
+                        itemobtained = random.choices(i["loot"],i["chances"],k=1)
+                print ("")
+                print ("You have obtained a", (itemobtained),"!")
+                Inventoryinstance.add_item(itemobtained)
+                print ("")
             elif choice == ("fight"):
                 chooseboss=choose_boss()
                 Bossfight(chooseboss, player, Inventoryinstance)
             elif choice == ("inventory"):
-                
                 Inventoryinstance.view_inventory()
             elif choice == "mine":
                 # Mining logic
@@ -79,13 +67,13 @@ while True:
                 print("")
                 break
             elif choice == "store":
-                enter_store()
+                enter_store(Inventory=Inventoryinstance, player=player)
             else:
                 print("Invalid choice. Please try again.")
     elif start_game == "options":
         while True:
             
-            print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
+            print("\nOptions to change: Difficulty | Spawn Biome | Return")
             option = input("Choose what you want to change: ").lower()
             if option == "difficulty":
                 print("\nDifficulty Options: Peaceful | Easy | Medium | Hard")
@@ -95,13 +83,6 @@ while True:
                 else:
                     print("Difficulty set to:", difficulty1)
                     difficulty = difficulty1
-            elif option == "cheats":
-                cheats1 = input("\nDo you want cheats on or off? (On | Off): ").lower()
-                if cheats1 not in ["on", "off"]:
-                    print("Invalid choice for cheats.")
-                else:
-                    print("Cheats set to:", cheats1)
-                    cheats = cheats1
             elif option == "spawn biome":
                 print("\nAvailable Biomes:", ", ".join(biomes))
                 currentbiome1 = input("Enter the biome you want to spawn in (CASE SENSITIVE): ")

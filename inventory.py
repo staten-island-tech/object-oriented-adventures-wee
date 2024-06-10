@@ -19,8 +19,14 @@ class Inventory:
 
     def add_money(self,amount):
         self.money += amount
-        print(f"You gained {amount} coins")
-        print(f"Your money is now this {self.money}")
+        if {amount} == 1:
+            print(f"You gained {amount} coin")
+        else:
+            print(f"You gained {amount} coins")
+        if {self.money} == 1:
+            print(f"Your balance: {self.money} coin")
+        else:
+            print(f"Your balance: {self.money} coins")
         
 
     def spend_money(self, amount):
