@@ -1,3 +1,4 @@
+
 class Inventory:
 
     def __init__(self):
@@ -27,7 +28,7 @@ class Inventory:
             self.money -= amount
         else:
             print("Not enough money!")
-
+Inventoryinstance=Inventory()
 """ class InventoryInstance:
     def __init__(self, data, SlotName) -> None:
         self.data: dict = data # Dictionary

@@ -1,4 +1,5 @@
 import json, os
+from inventory import Inventory, Inventoryinstance
 """ from inventory import  PracticeInventoryInstance """
 
 with open("store.json", "r") as file:
@@ -104,8 +105,7 @@ class Store:
             if sure.upper() == "Y":
                 #if player.
                 print("You have purchased a", item.name)
-                info = Equipment(item.name, item.price)
-                player.append(info.to_dict())
+                Inventoryinstance.add_item(item.name)
                 return item
             else:
                 return None

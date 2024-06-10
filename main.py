@@ -6,9 +6,9 @@ from fight import Bosses
 from fight import Bossfight, choose_boss
 from mine import levels
 from mine import choose_level, mine
-from inventory import Inventory
+from inventory import Inventory, Inventoryinstance
 from store import enter_store
-Inventoryinstance=Inventory()
+
                 
 # Define variables and lists
 start_game = ""
