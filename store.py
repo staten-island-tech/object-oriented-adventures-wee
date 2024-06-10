@@ -1,5 +1,13 @@
 import json, os
+from inventory import Inventory
 """ from inventory import  PracticeInventoryInstance """
+
+with open("store.json", "r") as file:
+    data = json.load(file)
+with open("inventory.json", "r") as f:
+    inventory = json.load(f)
+with open("player_inventory.json", "r") as f:
+    player = json.load(f)
 
 class Item:
     def __init__(self, name, value):
@@ -68,10 +76,10 @@ class Armor(Equipment):
 
 
 class Store:
-    def __init__(self):
-        with open("store.json", "r") as file:
-            data = json.load(file)
-            self.items = self.parse_items(data)
+    def __init__(self, Inventory, player):
+        z = 0
+        self.Inventory = Inventory
+        self.player = player
 
     def parse_items(self, data):
         items = []
@@ -85,19 +93,32 @@ class Store:
             items.append(item)
         return items
 
-    def buy_item(self, item_name):
-        for item in self.items:
-            if item.name.lower() == item_name.lower():
-                item.display_info()
-                sure = input("Are you sure you want to buy this? (Y/N): ")
-                if sure.upper() == "Y":
-                    print("You have purchased a", item.name)
-                    info = Equipment(item)
-                    player.append(info.to_dict())
-                    return item
+    def buy_item(self, item_type, item_tier):
+        item_data = data[item_type][item_tier]
+        if item_type == "sword":
+            item = Sword(item_data["Name"], item_data["Price"], item_data["Damage"], item_data["Crit percent"])
+        elif item_type == "pickaxe":
+            item = Pickaxe(item_data["Name"], item_data["Price"], item_data["Mining Power"])
+        elif item_type == "armor":
+            item = Armor(item_data["Name"], item_data["Price"], item_data["Health_Boost"])
+        item.display_info()
+        sure = input("Are you sure you want to buy this? (Y/N): ")
+        if sure:
+            if sure.upper() == "Y":
+                #if player.
+                if self.Inventory.money < item_data["Price"]:
+                    print("broke ahh")
                 else:
-                    return None
-        print("Item not found in the store.")
+                    print("You have purchased a", item.name)
+                    self.Inventory.add_item(item.name)
+                    self.Inventory.money -= item_data["Price"]
+                    self.player.damage += item_data.get("Damage", 0)
+
+                    
+                return item
+            else:
+                return None
+
     def sell_item(self, item_name):
         for item in self.items:
             if item.name.lower() == item_name.lower():
@@ -112,32 +133,33 @@ class Store:
         return None
     
 
-with open("inventory.json", "r") as f:
-    inventory = json.load(f)
-with open("player_inventory.json", "r") as f:
-    player = json.load(f)
-
 # CREATE openstore(PLAYER OBJ) 
-def enter_store():
-    store = Store()
+def enter_store(Inventory, player):
+    store = Store(Inventory=Inventory, player=player)
     while True:
         store_option = input("What do you want to do? (Buy | Sell | Exit): ")
-        if store_option == "Buy":
-            item_type = input("What type of item do you want to buy? - Case sensitive - (Sword | Pickaxe | Armor): ")
-            if item_type == "Sword":
-                item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
-                item = store.buy_item(item_name)
-                item
-            elif item_type == "Pickaxe":
-                item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
-                item = store.buy_item(item_name)
-                item
-            elif item_type == "Armor":
-                item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Leather, Chainmail, Iron, Diamond, Netherite, God): ")
-                item = store.buy_item(item_name)
-                item
+        if store_option.lower() == "buy":
+            item_type = input("What type of item do you want to buy? - (Sword | Pickaxe | Armor): ").lower()
+            if item_type == "sword":
+                item_tier = input("Enter the tier before the name of the item you want to buy (Tiers: Wood, Stone, Iron, Diamond, Netherite, God): ").lower()
+                if item_tier not in ["wood", "stone", "iron", "diamond", "netherite", "god"]:
+                    print("Item not found in the store.")
+                    return None
+            elif item_type == "pickaxe":
+                item_tier = input("Enter the tier before the name of the item you want to buy (Tiers: Wood, Stone, Iron, Diamond, Netherite, God): ").lower()
+                if item_tier not in ["wood", "stone", "iron", "diamond", "netherite", "god"]:
+                    print("Item not found in the store.")
+                    return None
+            elif item_type == "armor":
+                item_tier = input("Enter the tier before the name of the item you want to buy (Tiers: Leather, Chainmail, Iron, Diamond, Netherite, God): ").lower()
+                if item_tier not in ["leather", "chainmail", "iron", "diamond", "netherite", "god"]:
+                    print("Item not found in the store.")
+                    return None
             else:
                 print("Invalid item type.")
+                return None
+            
+            store.buy_item(item_type, item_tier)
 
         elif store_option == "Sell":
             E = "E"
@@ -185,21 +207,8 @@ def enter_store():
                         E = "E"
                 
 
-        elif store_option == "Exit":
+        elif store_option.lower() == "exit":
             print("Goodbye!")
             break
         else:
             print("Invalid option. Please choose Buy, Sell, or Exit.")
-
-enter_store()
-
-
-
-new_file = "updated.json"
-with open(new_file, "w") as f:
-    json_string = json.dumps(player)
-    f.write(json_string)
-
-
-os.remove("player_inventory.json")
-os.rename(new_file, "player_inventory.json")
