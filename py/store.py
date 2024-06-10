@@ -1,7 +1,11 @@
 import json, os
 """ from inventory import  PracticeInventoryInstance """
 
+<<<<<<< Updated upstream
 class Item:
+=======
+class Equipment:
+>>>>>>> Stashed changes
     def __init__(self, name, price):
         self.name = name
         self.price = price
@@ -93,13 +97,17 @@ class Store:
 
 with open("inventory.json", "r") as f:
     inventory = json.load(f)
+<<<<<<< Updated upstream
 with open("player_inventory.json", "r") as f:
     player = json.load(f)
 def main():
+=======
+def enter_store():
+>>>>>>> Stashed changes
     store = Store()
     while True:
-        store_option = input("What do you want to do? (Buy | Sell | Exit): ")
-        if store_option == "Buy":
+        store_option = input("What do you want to do? (Buy | Exit): ")
+        if store_option.lower() == "buy":
             item_type = input("What type of item do you want to buy? - Case sensitive - (Sword | Pickaxe | Armor): ")
             if item_type == "Sword":
                 item_name = input("Enter the tier before the name of the item you want to buy (Tiers: Wooden, Stone, Iron, Diamond, Netherite, God): ")
@@ -117,7 +125,17 @@ def main():
             else:
                 print("Invalid item type.")
 
+<<<<<<< Updated upstream
         elif store_option.lower() == "sell":
+=======
+        elif store_option.lower() == "exit":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid option. Please choose Buy or Exit.")
+
+"""         elif store_option.lower() == "sell":
+>>>>>>> Stashed changes
             S = "S"
             while S == "S":
                 I = "I"
@@ -136,30 +154,46 @@ def main():
                         print("You don't have that item")
                 while Q == "Q":
                     Quantity = input("How much of that item do you want to sell?: ")
+<<<<<<< Updated upstream
                     if int(Quantity) <= 0:
                         print("Are you good?")
+=======
+                    if Quantity.isalpha() == True:
+                        print("That's not a number")
+                    elif Quantity == "":
+                        print("Type something you moron")
+>>>>>>> Stashed changes
                     elif int(Quantity) > (Data["Quantity"]):
                         print("You don't have that much items")
-                    elif 0 < int(Quantity) <= (Data["Quantity"]): 
+                    elif int(Quantity) <= 0:
+                        print("Are you good?")
+                    else: 
                         New_Quantity = (Data["Quantity"]) - int(Quantity)
                         Profit = int(Quantity) * (Data["Sell value"])
                         print("You are going sell", int(Quantity), Data["Name"])
                         s = "S"
                         Q = "q"
+<<<<<<< Updated upstream
                     else:
                         print("That's not a number")
+=======
+>>>>>>> Stashed changes
                 while s == "S":
                     sure = input("Are you sure you want to sell these items? Y/N ")
                     if sure.upper() == "Y":
                         print("You have sold", Quantity ,Data["Name"], "and earned", Profit, "ducats")
                         print("You now have", New_Quantity, Data["Name"])
+<<<<<<< Updated upstream
                         inventory.append(.to_dict())
                         """PracticeInventoryInstance.RemoveItem({ITEM: {"Description": "SKIBIDI TOIL!!!"}}) """
+=======
+>>>>>>> Stashed changes
                         s = "s"
                         S = "s"
                     else:
                         print("Bro wtf")
                         s = "s"
+<<<<<<< Updated upstream
                         S = "s"
                 
 
@@ -181,3 +215,6 @@ with open(new_file, "w") as f:
 
 os.remove("player_inventory.json")
 os.rename(new_file, "player_inventory.json")
+=======
+                        S = "s" """
+>>>>>>> Stashed changes
