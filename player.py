@@ -3,14 +3,28 @@ import os
 from inventory import Inventory
 with open("player.json", encoding="utf8") as file:
     player = json.load(file)
+with open("store.json", "r") as store:
+    items = store
 class Player():
-    def __init__(self, name, health, weapon, tool, balance, inventory):
+    def __init__(self, name, maxhealth, health, weapon, armor, tool, balance):
         self.name = name
+        self.maxhealth = maxhealth
         self.health = health
         self.weapon = weapon
+        self.armor = armor
         self.tool = tool
         self.balance = balance
-        self.inventory = Inventory
+        self.inventory = Inventory 
+    def hp(self):
+        while self.player.health > 0:
+            for i in items:
+                if i == "armor":
+                    for a in i:
+                        if a == self.player.armor:
+                            maxhealth = maxhealth + a["healthboost"]
+                            health = health + a["healthboost"]
+    if player.self.health >= player.self.maxhealth:
+        player.self.health == player.self.maxhealth
 """ while True:
     N = input("What's the player's name?: ")
     H = int(input("How much health does the player have?(up to 1000-only accessible with cheats on- otherwise, type 100): "))

@@ -8,7 +8,6 @@ from mine import levels
 from mine import choose_level, mine
 from inventory import Inventory, Inventoryinstance
 from store import enter_store
-
                 
 # Define variables and lists
 start_game = ""
@@ -26,10 +25,14 @@ class Mobs:
         self.mobdamage=mobdamage
         self.name=name
 class Player:
-    def __init__(self, health, damage):
+    def __init__(self, maxhealth, health, damage):
+        self.maxhealth = maxhealth
         self.health=health
         self.damage=damage
-player=Player(150, 20)
+player=Player(100,100, 10)
+while player.health > player.maxhealth:
+    player.health == player.maxhealth
+
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
@@ -46,6 +49,7 @@ while True:
                 print ("")
             elif choice == ("annex all"):
                 Inventoryinstance.add_money(9999999999999999999)
+                print ("")
             elif choice == ("forage"):
                 for i in biomedata1:
                     if currentbiome == (i["name"]):
