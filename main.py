@@ -7,6 +7,7 @@ from fight import Bossfight, choose_boss
 from mine import levels
 from mine import choose_level, mine
 from inventory import Inventory
+from store import enter_store
 Inventoryinstance=Inventory()
                 
 # Define variables and lists
@@ -77,10 +78,13 @@ while True:
             elif choice == "leave game":
                 print("")
                 break
+            elif choice == "store":
+                enter_store()
             else:
                 print("Invalid choice. Please try again.")
     elif start_game == "options":
         while True:
+            
             print("\nOptions to change: Difficulty | Cheats | Spawn Biome | Return")
             option = input("Choose what you want to change: ").lower()
             if option == "difficulty":
