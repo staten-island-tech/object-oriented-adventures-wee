@@ -53,8 +53,8 @@ def choose_level():
                             return level
                         else:
                             print("Invalid difficulty. Please choose again.")
-def mine(level, player):
-                    Inventoryinstance=Inventory()
+def mine(level, player, Inventoryinstance):
+                    Inventoryinstance=Inventoryinstance
                     print(f"You have entered the {level} mines")
                     while True:
                         choice = input("Do you want to mine or leave? (Mine/Leave): ").lower()
@@ -85,19 +85,20 @@ def mine(level, player):
                                                 if level=="easy":
                                                     mob.mobhealth=25
                                                     Inventoryinstance.add_money(10)
-                                                    print(Inventoryinstance.money)
+                                                    
                                                 elif level=="medium":
                                                     mob.mobhealth=40
                                                     Inventoryinstance.add_money(20)
-                                                    print(Inventoryinstance.money)
+                                                    
                                                 elif level=="hard":
                                                     mob.mobhealth=80
                                                     Inventoryinstance.add_money(40)
-                                                    print(Inventoryinstance.money)
+                                                    
+                                                    
                                                 elif level=="extreme":
                                                     mob.mobhealth=150
                                                     Inventoryinstance.add_money(80)
-                                                    print(Inventoryinstance.money)
+                                                    
                                                 break
                                         elif attack_run.lower() == "r":
                                                     print(f"You successfully ran away from the {mob.name}.")

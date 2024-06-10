@@ -1,4 +1,4 @@
-
+from inventory import Inventory
 import random
 
 
@@ -49,7 +49,8 @@ def choose_boss():
                             print("Invalid boss. Please choose again.")
 
 
-def Bossfight(bosschoose, player):
+def Bossfight(bosschoose, player, Inventoryinstance):
+    Inventoryinstance=Inventoryinstance
     print(f"You have awakend {bosschoose}")
     print(f"{bosschoose} is awakend")
     boss=Bosses[bosschoose]["boss"]
@@ -68,6 +69,7 @@ def Bossfight(bosschoose, player):
                 print(f"Congratulations, you defeated the boss")
                 if bosschoose=="ZOMBIE KING":
                       boss.bosshealth=200
+                      
                 if bosschoose=="GOLEM":
                       boss.bosshealth=500
                 if bosschoose=="GIANT SERPANT":
@@ -77,6 +79,7 @@ def Bossfight(bosschoose, player):
                 if bosschoose=="GOD":
                       boss.bosshealth=4000
                 print(f"Since you defeated the boss you have dropoed a {bossdrops}")
+                Inventoryinstance.add_item(bossdrops)
                 break
         elif attack_run.lower() == "run":
                     print(f"You successfully ran away from the boss.")

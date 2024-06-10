@@ -28,7 +28,7 @@ class Player:
     def __init__(self, health, damage):
         self.health=health
         self.damage=damage
-player=Player(10000, 5)
+player=Player(10000, 50)
 # Game loop
 while True:
     print("\nOptions: Start | Options | Exit")
@@ -66,14 +66,14 @@ while True:
                     print ("")
             elif choice == ("fight"):
                 chooseboss=choose_boss()
-                Bossfight(chooseboss, player)
+                Bossfight(chooseboss, player, Inventoryinstance)
             elif choice == ("inventory"):
                 
                 Inventoryinstance.view_inventory()
             elif choice == "mine":
                 # Mining logic
                 level = choose_level()
-                mine(level, player)
+                mine(level, player, Inventoryinstance)
             elif choice == "leave game":
                 print("")
                 break
