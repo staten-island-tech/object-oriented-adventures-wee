@@ -32,7 +32,7 @@
         },
         "god" : { 
             "Name" : "God sword",
-            "Price" : 500,
+            "Price" : 1000,
             "Damage" : 100,
             "Crit percent" : 100
         }
@@ -72,28 +72,28 @@
     "armor" : {
         "leather" : {
             "Name" : "Leather armor",
-            "Price" : 25,
-            "Health_Boost" : 20
+            "Price" : 50,
+            "Health_Boost" : 30
         },
         "chainmail" : {
             "Name" : "Chainmail armor",
-            "Price" : 50,
-            "Health_Boost" : 50
+            "Price" : 100,
+            "Health_Boost" : 70
         },
         "iron" : {
             "Name" : "Iron armor",
-            "Price" : 75,
+            "Price" : 150,
             "Health_Boost" : 100
         },
         "diamond" : {
             "Name" : "Diamond armor",
-            "Price" : 100,
+            "Price" : 200,
             "Health_Boost" : 150
         },
         "netherite" : {
             "Name" : "Netherite armor",
-            "Price" : 200,
-            "Health_Boost" : 300
+            "Price" : 250,
+            "Health_Boost" : 200
         },
         "god" : {
             "Name" : "God armor",
