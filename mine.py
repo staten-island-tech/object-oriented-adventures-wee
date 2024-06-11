@@ -1,7 +1,5 @@
 import random
 from inventory import Inventory
-
-
 class Mobs:
     def __init__(self, name, mobhealth, mobdamage):
         self.mobhealth=mobhealth
@@ -53,8 +51,7 @@ def choose_level():
                             return level
                         else:
                             print("Invalid difficulty. Please choose again.")
-def mine(level, player, Inventoryinstance):
-                    Inventoryinstance=Inventoryinstance
+def mine(level, player):
                     print(f"You have entered the {level} mines")
                     while True:
                         choice = input("Do you want to mine or leave? (Mine/Leave): ").lower()
@@ -74,44 +71,33 @@ def mine(level, player, Inventoryinstance):
                                         print(f"The {mob.name} attacked you. Your health is now {player.health}")
                                         if player.health <= 0:
                                             print("You were defeated by the mob!")
+                                            player.health==150
                                             return
-                                        attack_run = input("What would you like to do? (Attack(A)/Run(R)) : ")
-                                        if attack_run.lower() == "a":
+                                        attack_run = input("What would you like to do? (Attack/Run): ")
+                                        if attack_run.lower() == "attack":
                                             mob.mobhealth -= player.damage
                                             print(f"You attacked the {mob.name}. Its health is now {mob.mobhealth}")
                                             if mob.mobhealth <= 0:
                                                 print(f"Congratulations, you defeated the {mob.name}!")
-                                                
                                                 if level=="easy":
                                                     mob.mobhealth=25
-                                                    Inventoryinstance.add_money(10)
-                                                    
                                                 elif level=="medium":
                                                     mob.mobhealth=40
-                                                    Inventoryinstance.add_money(20)
-                                                    
-                                                elif level=="hard":
+                                                if level=="hard":
                                                     mob.mobhealth=80
-                                                    Inventoryinstance.add_money(40)
-                                                    
-                                                    
                                                 elif level=="extreme":
                                                     mob.mobhealth=150
-                                                    Inventoryinstance.add_money(80)
-                                                    
                                                 break
-                                        elif attack_run.lower() == "r":
+                                        elif attack_run.lower() == "run":
                                                     print(f"You successfully ran away from the {mob.name}.")
                                                     break
                                         else:
-                                                print("Invalid input (Your punished). Please enter 'Attack' or 'Run'.")
-                                                
-
+                                                print("Invalid input. Please enter 'Attack' or 'Run'.")
+                                                return
                             elif random_MO in levels[level]["ores"]:
                                     ore = random_MO
                                     print(f"You found {ore} ore.")
-                                    Inventoryinstance.add_item(ore)
                             else:
-                                print("Invalid choice. Please choose 'Mine' or 'Leave'.")
+                                    print("Invalid choice. Please choose 'Mine' or 'Leave'.")
 
 

@@ -85,7 +85,7 @@ while True:
                     difficulty = difficulty1
             elif option == "spawn biome":
                 print("\nAvailable Biomes:", ", ".join(biomes))
-                currentbiome1 = input("Enter the biome you want to spawn in (CASE SENSITIVE): ")
+                currentbiome1 = input("Enter the biome you want to spawn in: ").capitalize()
                 if currentbiome1 not in biomes:
                     print("Invalid biome.")
                 else:

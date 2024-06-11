@@ -108,12 +108,16 @@ class Store:
                 #if player.
                 if self.Inventory.money < item_data["Price"]:
                     print("broke ahh")
-                else:
+                elif item_type== "sword":
                     print("You have purchased a", item.name)
                     self.Inventory.add_item(item.name)
                     self.Inventory.money -= item_data["Price"]
                     self.player.damage += item_data.get("Damage", 0)
-
+                elif item_type=="armor":
+                    print("You have purchased a", item.name)
+                    self.Inventory.add_item(item.name)
+                    self.Inventory.money -= item_data["Price"]
+                    self.player.damage += item_data.get("Health_Boost", 0)
                     
                 return item
             else:
