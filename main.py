@@ -29,7 +29,7 @@ class Player:
         self.maxhealth = maxhealth
         self.health=health
         self.damage=damage
-player=Player(100,100, 10)
+player=Player(1000,1000, 100)
 while player.health > player.maxhealth:
     player.health == player.maxhealth
 
@@ -48,7 +48,7 @@ while True:
                 print("You've successfully travelled to a ", (currentbiome), "biome!")
                 print ("")
             elif choice == ("annex all"):
-                Inventoryinstance.add_money(9999999999999999999)
+                Inventoryinstance.add_money(99999999999999999999999999999999999999999999999999999999)
                 print ("")
             elif choice == ("forage"):
                 for i in biomedata1:
